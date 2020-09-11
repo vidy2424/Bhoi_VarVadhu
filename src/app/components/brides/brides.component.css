@@ -1,0 +1,81 @@
+ 
+.carousel {
+    background: red;
+    transition-delay: 1s;
+   transition-timing-function: ease-in-out;
+   outline: none;
+  }
+  
+  .btn{min-width:100px;}
+
+  .card {
+      box-shadow: 0 4px 8px 0 #ed8480;
+      transition: 0.3s;
+      /* width: 40%; */
+      opacity: 50;     
+    }
+
+    .card:hover {
+      box-shadow: 0 18px 18px 0px #ff4b45;
+    }
+
+    .font{
+      font-family: 'Quicksand', sans-serif;
+    }
+     
+.hero {
+  position: relative;
+  width: 100%;
+   /* padding: 1em 0; */
+  overflow: hidden; 
+}
+  .hero__background {
+     position: absolute;
+    top: -0.1%;
+    left: 0;
+    width: 100%;
+    -webkit-filter: blur(10px);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  .hero__title {
+    position: relative;
+    text-align: center;
+    font-size: 5em;
+    color: white;
+  }
+ 
+  /* 
+    .carousel-control-next-icon{
+      background-color: blue;
+       
+    } */
+  
+    /* .carousel-control-next-icon,
+    .carousel-control-prev-icon {
+      background-image: none;
+      color: red;
+      font-size: 20px;
+    } */
+  
+    ::ng-deep .carousel-control-prev, ::ng-deep .carousel-control-next {
+      max-height: 20px;
+      max-width: 20px;
+      margin: auto;
+      margin-left: 40px;
+      margin-right: 40px;
+    }
+
+/* Sroll to top button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      opacity: 0;
+      transition: all .2s ease-in-out;
+     }
+     .show-scrollTop {
+      opacity: 1;
+      transition: all .2s ease-in-out;
+ 
+     }
+   

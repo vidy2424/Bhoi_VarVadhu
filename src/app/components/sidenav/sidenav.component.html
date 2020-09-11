@@ -1,0 +1,239 @@
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <!-- <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#">
+                    Start Bootstrap
+                </a>
+            </li>
+            <li>
+                <a href="#">Dashboard</a>
+            </li>
+            <li>
+                <a href="#">Shortcuts</a>
+            </li>
+            <li>
+                <a href="#">Overview</a>
+            </li>
+            <li>
+                <a href="#">Events</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul> -->
+
+        <div class="col-12">
+            <img [src]="sanitizeImageUrl(loginUserInfo.code)" class="img-circle" alt="image slide"
+                style="display: block; width: 100%; height: 200px; margin-top: 80px;">
+
+            <h1 class="text-center mt-2" style="font-size: 20px; color: white;">{{loginUserInfo.fullname}}</h1>
+     
+            <div class="row mt-2">
+                <div class="col-4">
+                    <i class="fa fa-phone " style="font-size: 18px; margin-left: 50px; color: white;"
+                        aria-hidden="true">
+                    </i>
+                </div>
+                <div class="col-8" style="color: white; font-size: 14px;">
+                     {{loginUserInfo.contact_No_1}}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col mx-auto text-white text-center">
+                </div>
+            </div>
+
+
+            <div class="row mt-1">
+                <div class="col mx-auto">
+                    <!-- Accordion -->
+                    <div id="accordionExample" class="accordion shadow">
+
+                        <!-- Accordion item 1 -->
+                        <div class="card">
+                            <div id="headingOne" class="card-header bgcolor">
+                                <h6 class="mb-0"><a href="#" data-toggle="collapse" data-target="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne"
+                                        class="d-block position-relative  text-uppercase collapsible-link py-2"
+                                        style="text-decoration: none; color:white;font-size: 13px;">
+
+                                        Personal Info</a></h6>
+                            </div>
+                            <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample"
+                                class="collapse show">
+                                <div class="card-body bgcolor1">
+                                    <div class="row">
+                                        <div class="col-3 ">
+                                            <i class="fa fa-graduation-cap ml-1" style="font-size: 18px; color: white;"
+                                                aria-hidden="true">
+                                            </i>
+                                        </div>
+                                        <div class="col-9 font" style="color: white;">
+                                             {{loginUserInfo.education}}
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-3 ">
+                                            <i class="fa fa-briefcase ml-1" style="font-size: 18px; color: white;"
+                                                aria-hidden="true">
+                                            </i>
+                                        </div>
+                                        <div class="col-9 font" style="color: white;">
+                                             {{loginUserInfo.occupation}}
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-3 ">
+                                            <i class="fa fa-square ml-1" style="font-size: 18px; color: white;"
+                                                aria-hidden="true">
+                                            </i>
+                                        </div>
+                                        <div class="col-9 font" style="color: white;">
+                                            {{loginUserInfo.caste}}
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-3 ">
+                                            <i class="fa fa-map-marker ml-2" style="font-size: 18px; color: white;"
+                                                aria-hidden="true">
+                                            </i>
+                                        </div>
+                                        <div class="col-9 font" style="color: white;">
+                                            Lives in {{loginUserInfo.city}}
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-3 ">
+                                            <i class="fa fa-inr ml-2" style="font-size: 18px; color: white;"
+                                                aria-hidden="true">
+                                            </i>
+                                        </div>
+                                        <div class="col-9 font" style="color: white;">
+                                            Earns {{loginUserInfo.annual_Income}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion item 2 -->
+                        <div class="card">
+                            <div id="headingTwo" class="card-header bgcolor ">
+                                <h6 class="mb-0 "><a href="#" data-toggle="collapse"
+                                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
+                                        class="d-block position-relative collapsed text-uppercase collapsible-link py-2"
+                                        style="text-decoration: none; color: white;font-size: 13px;">
+                                        Physical Info</a></h6>
+                            </div>
+                            <div id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample"
+                                class="collapse">
+                                <div class="card-body bgcolor1">
+                                    <div class="row">
+                                        <div class="col-3 ">
+                                            <i class="fa fa-male ml-2" style="font-size: 18px; color: white;"
+                                                aria-hidden="true">
+                                            </i>
+                                        </div>
+                                        <div class="col-9 font" style="color: white;">
+                                            Height is {{loginUserInfo.height}}
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-3 ">
+                                            <i class="fa fa-male ml-2" style="font-size: 18px; color: white;"
+                                                aria-hidden="true">
+                                            </i>
+                                        </div>
+                                        <div class="col-9 font" style="color: white;">
+                                            Weight is {{loginUserInfo.weight}}
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-3 ">
+                                            <i class="fa fa-medkit ml-2" style="font-size: 18px; color: white;"
+                                                aria-hidden="true">
+                                            </i>
+                                        </div>
+                                        <div class="col-9 font" style="color: white;">
+                                            Blood Group {{loginUserInfo.blood_Group}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+ 
+                        <!-- Accordion item 3 -->
+                        <div class="card">
+                            <div id="" class="row card-header bgcolor">
+                                <h6 class="mb-0 col-8 "><a href="#" data-toggle="collapse"
+                                        data-target="" aria-expanded="false" aria-controls=""
+                                        class="d-block position-relative collapsed text-uppercase py-2"
+                                        style="text-decoration: none; color: white; font-size: 13px;">
+                                        Edit Profile</a></h6>
+                                        <div class="col-4 ">
+                                        <i class=" fa fa-chevron-right mt-2" style="font-size: 16px; margin-left: 13px; color: white;"
+                                        aria-hidden="true">
+                                    </i></div>
+                            </div>
+                            <!-- <div id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample"
+                                class="collapse">
+                                <div class="card-body bgcolor1">
+                                    <div class="row mt-2">
+                                        <div class="col-3 ">
+                                            <i class="fa fa-user ml-2" style="font-size: 18px; color: white;"
+                                                aria-hidden="true">
+                                            </i>
+                                        </div>
+                                        <div class="col-9 font" style="color: white;">
+                                            Sign is {{loginUserInfo.zodiac_Sign}}
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-3 ">
+                                            <i class="fa fa-user ml-2" style="font-size: 18px; color: white;"
+                                                aria-hidden="true">
+                                            </i>
+                                        </div>
+                                        <div class="col-9 font" style="color: white;">
+                                            Nakshatras {{loginUserInfo.nakshatras}}
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-3 ">
+                                            <i class="fa fa-user ml-2" style="font-size: 18px; color: white;"
+                                                aria-hidden="true">
+                                            </i>
+                                        </div>
+                                        <div class="col-9 font" style="color: white;">
+                                            Birth Place {{loginUserInfo.birth_Place}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+    <!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->

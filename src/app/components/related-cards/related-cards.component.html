@@ -1,0 +1,68 @@
+<div class="container-fluid ">
+    <!-- <div class="text-center mt-3">
+        <button type="button" class="btn btn-primary text-center;" (click)="addmemberInfo()">Create</button>
+    </div> -->
+    <br>
+
+    <!-- <ng-template #template>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{formName}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body col-12" style="">
+            <div>
+                <formio #notificationForm [form]="formIo.form" [submission]="formIo.submission"
+                    [options]="formIoOptions" (change)="onSignUpFormChange($event)"
+                    (render)="onFormLoad(notificationForm)" (submit)="submitForm($event)">
+                </formio>
+                <label class="btn btn-default">
+                    <input type="file" (change)="selectFile($event)" />
+                </label>
+
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" required="true" value="option1">
+                    <label class="form-check-labelp" for="inlineCheckbox1">All information in the form is true. If any wrong/false information find then i will be only responsible for that. bhiovarvadhu.com website or company will not be responsible for that.I Accept All The Rules and Regulations of bhoivarvadhu.com .</label>
+                  </div>
+          
+            </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary">close</button>
+            <button type="button" class="btn btn-secondary"  (click)="upload()"
+            data-dismiss="modal">Submit</button>
+          </div>
+          <!-- [disabled]="!submissionData" -->
+    <!-- </ng-template> -->
+
+    <div class="col-sm-12" style="">
+        <div class="  mt-4" style="">
+            <!-- <img class="col-sm-12 hero__background " src="assets/image/a22.jpg"> -->
+            
+            <div class="card cardshadow" style="margin-top: 50px; background-color: white;  border-radius: 20px; ">
+                <h1 class="text-center mt-4 fontawsm" style="color: #fa7a75; ">Matching Profiles</h1>
+                <div class="card-body">
+                         <carousel class="carosel col-sm-12" [itemsPerSlide]="5" [singleSlideOffset]="singleSlideOffset"
+                            [interval]=5000 [noWrap]="noWrap" [showIndicators]="false">
+                            <slide *ngFor="let plan of productInfo; let index=index" class="mx-auto fade3">
+                                <div class="col-12 p-1  mt-4 mb-4">
+                                    <div class="card cardhover p-0 ml-2 mr-2" style="width: auto; ">
+                                        <img [src]="sanitizeImageUrl(plan.code)" alt="image slide"
+                                            style="display: block; width: 100%; height: 200px">
+                                        <div class="card-body mt-2 mb-2">
+                                            <h5 class="card-title text-center fontawsm">{{plan.fullName}}</h5>
+                                        </div>
+                                        <div class="text-center mt-2 mb-2">
+                                            <button type="button" class="btn btn-outline-success fontawsm">Info</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </slide>
+                        </carousel>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row " style="height: 80px;"></div>
+</div>

@@ -1,0 +1,70 @@
+ 
+ 
+<div class="container-fluid ">
+
+    <!-- <ng-template #template>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{formName}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body col-12" style="">
+            <div>
+                <formio #notificationForm [form]="formIo.form" [submission]="formIo.submission"
+                    [options]="formIoOptions" (change)="onSignUpFormChange($event)"
+                    (render)="onFormLoad(notificationForm)" (submit)="submitForm($event)">
+                </formio>
+                <label class="btn btn-default">
+                    <input type="file" (change)="selectFile($event)" />
+                </label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="modalRef.hide()">close</button>
+            <button type="button" class="btn btn-secondary" (click)="upload()" (click)="modalRef.hide()"
+                data-dismiss="modal">Submit</button>
+        </div>
+        <!-- [disabled]="!submissionData" -->
+    <!-- </ng-template> -->
+
+    <!-- <div class="row " style="height: 10px;"></div> -->
+
+    <div class="row  " *ngFor="let plan of productInfo; let index=index">
+        <!--  -->
+        <!-- <div class="col-xl-1"></div> -->
+        <div class="col-xl-12  mb-2 ">
+
+            <div class="card cardshadow p-0 " style="width: auto; ">
+               
+                    
+            <div class="card-body ">
+                <div class="row">
+                <div class="col-xl-6">
+                    <img [src]="sanitizeImageUrl(plan.code)" alt="image slide"
+                    style="display: block; width: 100%; height: 100px; border-radius: 15px;">
+                </div>
+                <div class="col-xl-6">
+                
+                <h5 class="card-title " style="font-size: 13px;">{{plan.fullName}}</h5>
+                <h5 class="card-title " style="font-size: 13px;">{{plan.height}}</h5>
+                <h5 class="card-title " style="font-size: 13px;">{{plan.caste}}</h5>
+                <h5 class="card-title " style="font-size: 13px;">{{plan.city}}</h5>
+            </div>
+            </div>
+            <!-- <div class="text-center mt-2 mb-2">
+                <button type="button" class="btn btn-outline-success fontawsm">Info</button>
+            </div> -->
+        </div>
+    </div>
+         </div>
+        <!-- <div class="col-xl-1 "></div> -->
+    </div>
+ 
+
+ 
+ 
+</div>
+
+
+ 

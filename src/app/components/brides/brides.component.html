@@ -1,0 +1,201 @@
+<div class="">
+    <app-navbar></app-navbar>
+</div>
+<div class="">
+    <app-sidenav></app-sidenav>
+</div>
+
+<div class="container-fluid ">
+
+    <ng-template #template>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{formName}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body col-12" style="">
+            <div>
+                <formio #notificationForm [form]="formIo.form" [submission]="formIo.submission"
+                    [options]="formIoOptions" (change)="onSignUpFormChange($event)"
+                    (render)="onFormLoad(notificationForm)" (submit)="submitForm($event)">
+                </formio>
+                <label class="btn btn-default">
+                    <input type="file" (change)="selectFile($event)" />
+                </label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="modalRef.hide()">close</button>
+            <button type="button" class="btn btn-secondary" (click)="upload()" (click)="modalRef.hide()"
+                data-dismiss="modal">Submit</button>
+        </div>
+        <!-- [disabled]="!submissionData" -->
+    </ng-template>
+
+    <div class="row " style="height: 80px;"></div>
+
+    <div class="row  " *ngFor="let plan of productInfo; let index=index">
+        <!--  -->
+        <div class="col-xl-3"></div>
+        <div class="col-xl-8">
+
+            <div class="card button one" style="margin-top: 50px; background-color: #6b686bfa; border-radius: 20px; ">
+
+                <div class="card-body ">
+                    <div class="">
+                        <h2 class="card-title mt-3 text-center" style="font-size: 20px;  color:white; ">
+                            {{plan.fullName}}</h2>
+                        <div class="row ">
+                            <!-- <div class="col-12 col-xl-1 col-sm-12  "></div> -->
+                            <div class="col-12 col-xl-4 col-sm-12 ">
+
+                                <img [src]="sanitizeImageUrl(plan.code)" class="mb-3" alt="image slide"
+                                    style="display: block; margin: auto; width: 60%; height: 200px">
+
+                            </div>
+                            <div class="col-12 col-xl-4 col-sm-12">
+                                <h2 class="card-title mt-3 text-center d-md-none"
+                                    style="font-size: 20px;  color:white; ">
+                                    {{plan.fullName}}</h2>
+                                <div class="row">
+                                    <div class="col-xl-2 col-2 ">
+                                        <i class="fa fa-graduation-cap ml-1 mt-3 mb-3"
+                                            style="font-size: 18px; color: white;" aria-hidden="true">
+                                        </i>
+                                    </div>
+                                    <div class="col-xl-10 col-4 font mt-2 mb-3 " style="color: white;">
+                                        {{plan.education}}
+                                    </div>
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fa fa-briefcase ml-1 mt-3 mb-3"
+                                            style="font-size: 18px; color: white;" aria-hidden="true">
+                                        </i>
+                                    </div>
+                                    <div class="col-xl-10 col-4 font mt-2 mb-3 " style="color: white;">
+                                        {{plan.occupation}}
+                                    </div>
+                                    <div class="col-xl-2 col-2  ">
+                                        <i class="fa fa-inr ml-1 mt-3 mb-3"
+                                            style="font-size: 18px; color: white;" aria-hidden="true">
+                                        </i>
+                                    </div>
+                                    <div class="col-xl-10 col-4 font mt-2 mb-3 " style="color: white;">
+                                        {{plan.annual_Income}}
+                                    </div>
+                                    <div class="col-xl-2 col-2  ">
+                                        <i class="fa fa-map-marker ml-1 mt-3 mb-3"
+                                            style="font-size: 18px; color: white;" aria-hidden="true">
+                                        </i>
+                                    </div>
+                                    <div class="col-xl-10 col-4 font mt-2 mb-3 " style="color: white;">
+                                        {{plan.city}}
+                                    </div>
+                                    <div class=" text-center mt-2 mb-2 mx-auto">
+                                        <button type="button" class="btn btn-outline-success fontawsm"
+                                         style="color: white; border-color: white;" >View Profile</button>
+                                    </div>
+                                </div>
+                             </div>
+
+                            <div class="col-12 col-xl-4 col-sm-12 font  ">
+                                <div class="row">
+                                    <div class="col-xl-2 col-2  ">
+                                        <i class="fa fa-square ml-1 mt-3 mb-3"
+                                            style="font-size: 18px; color: white;" aria-hidden="true">
+                                        </i>
+                                    </div>
+                                    <div class="col-xl-10 col-4 font mt-2 mb-3 " style="color: white;">
+                                        {{plan.caste}}
+                                    </div>
+                                    <div class="col-xl-2 col-2  ">
+                                        <i class="fa fa-male ml-1 mt-3 mb-3"
+                                            style="font-size: 20px; color: white;" aria-hidden="true">
+                                        </i>
+                                    </div>
+                                    <div class="col-xl-10 col-4 font mt-2 mb-3 " style="color: white;">
+                                        {{plan.height}}
+                                    </div>
+                                    <div class="col-xl-2 col-2  ">
+                                        <i class="fa fa-male ml-1 mt-3 mb-3"
+                                            style="font-size: 18px; color: white;">
+                                        </i>
+                                    </div>
+                                    <div class="col-xl-10 col-4 font mt-2 mb-3 " style="color: white;">
+                                        {{plan.weight}}
+                                    </div>
+                                    <div class="col-xl-2 col-2  ">
+                                        <i class="fa fa-medkit ml-1 mt-3 mb-3"
+                                            style="font-size: 18px; color: white;" aria-hidden="true">
+                                        </i>
+                                    </div>
+                                    <div class="col-xl-10 col-4 font mt-2 mb-3 " style="color: white;">
+                                        {{plan.blood_Group}}
+                                    </div>
+                                </div>
+                             </div>
+                            <!-- <div class="col-12 col-xl-1 col-sm-12  "></div> -->
+                            
+                        </div>
+
+
+                        <div class="row">
+                            <div *ngIf='isAdmin' class="col-6 mt-3 mb-3 text-center">
+                                <a href="javascript:void(0)" (click)="editmemberInfo(plan)"
+                                    class="btn btn-outline-primary" style="color: white; ">Edit</a>
+                            </div>
+                            <div *ngIf='isAdmin' class="col-6 mt-3 mb-3 text-center">
+                                <a href="javascript:void(0)" (click)="deletememberInfo(plan)"
+                                    class="btn btn-outline-primary" style="color: white;">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-1 "></div>
+    </div>
+<div class="row mt-4">
+    <div class="col-2"></div>
+    <div *ngIf="pagination.total > 1" class="col-10 mt-4">
+        <div class="col-md-4 offset-md-4">
+            <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                <ul class="pagination">
+                    <li class="page-item" [ngClass]="pagination.page === 1 ? 'disabled' : ''">
+                        <a class="page-link" href="javascript:void(0)" (click)="setPreviousAndNextPage('Previous')"
+                            aria-label="Previous" click>
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <div *ngFor="let page of counter(pagination.total); let index=index">
+                        <li class="page-item" [ngClass]="page === 1 ? 'active' : ''" id="{{getId(page)}}"><a
+                                class="page-link" href="javascript:void(0)" (click)="changePage(page)">{{page}}</a></li>
+                    </div>
+                    <li class="page-item" [ngClass]="pagination.page === pagination.total ? 'disabled' : ''">
+                        <a class="page-link" href="javascript:void(0)" (click)="setPreviousAndNextPage('Next')"
+                            aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+    <!-- sroll to top button -->
+    <div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
+        <i class="fa fa-arrow-circle-up" (click)="scrollToTop()" style="font-size: 40px;color:dodgerblue ;"
+            aria-hidden="true"></i>
+    </div>
+
+    <div class="row " style="height: 80px;"></div>
+
+</div>
+
+
+<div class="">
+    <app-footer></app-footer>
+</div>

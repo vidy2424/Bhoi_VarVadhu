@@ -1,0 +1,489 @@
+<div class="">
+    <app-navbar></app-navbar>
+</div>
+<!-- <div class="">
+    <app-sidenav></app-sidenav>
+</div> -->
+
+<div class="container-fluid border border-primary">
+
+    <ng-template #template>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{formName}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body col-12">
+            <div>
+                <formio #notificationForm [form]="formIo.form" [submission]="formIo.submission"
+                    [options]="formIoOptions" (change)="onSignUpFormChange($event)"
+                    (render)="onFormLoad(notificationForm)" (submit)="submitForm($event)">
+                </formio>
+                <label class="btn btn-default">
+                    <input type="file" (change)="selectFile($event)" />
+                </label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="modalRef.hide()">close</button>
+            <button type="button" class="btn btn-secondary" (click)="upload()" (click)="modalRef.hide()"
+                data-dismiss="modal">Submit</button>
+        </div>
+        <!-- [disabled]="!submissionData" -->
+    </ng-template>
+
+    <div class="row " style="height: 80px;"></div>
+
+    <div class="row border border-primary">
+        <!--  -->
+        <div class="col-xl-1 "></div>
+        <div class="col-xl-8 ">
+
+            <div class="card button one" style="margin-top: 50px; background-color: white;  border-radius: 20px; ">
+
+                <div class="card-body">
+                    <div class="">
+                        <h2 class="card-title mt-3 text-center" style="font-size: 20px; ">
+                        </h2>
+                        <div class="row ">
+
+                            <!-- <div class="col-12 col-xl-1 col-sm-12  "></div> -->
+                            <div class="col-12 col-xl-4 col-sm-12 ">
+
+                                <img [src]="sanitizeImageUrl(loginUserInfo.code)" class="mb-3" alt="image slide"
+                                    style="display: block; margin: auto; width: 60%; height: 200px">
+
+                            </div>
+                            <div class="col-12 col-xl-4 col-sm-12 ">
+                                <div class="row">
+                                    <div class="col-12 "
+                                        style="font-family: 'Montserrat', sans-serif; font-size: 20px;">
+                                        {{loginUserInfo.fullname}}</div>
+                                    <div class="col-xl-2 col-2 ">
+                                        <i class="fa fa-graduation-cap ml-1 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        Studied {{loginUserInfo.education}}
+                                    </div>
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fa fa-briefcase ml-1 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        {{loginUserInfo.occupation}}
+                                    </div>
+                                    <div class="col-xl-2 col-2  ">
+                                        <i class="fa fa-inr ml-1 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        {{loginUserInfo.annual_Income}}
+                                    </div>
+                                    <div class="col-xl-2 col-2  ">
+                                        <i class="fa fa-map-marker ml-1 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        Lives in {{loginUserInfo.city}}
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-xl-4 col-sm-12 font  ">
+                                <div class="row">
+                                    <div class="col-12 " style="height: 32px;"></div>
+
+                                    <div class="col-xl-2 col-2  ">
+                                        <i class="fa fa-square ml-1 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        {{loginUserInfo.caste}}
+                                    </div>
+                                    <div class="col-xl-2 col-2  ">
+                                        <i class="fa fa-male ml-1 mt-3 mb-3" style="font-size: 20px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        {{loginUserInfo.height}}
+                                    </div>
+                                    <div class="col-xl-2 col-2  ">
+                                        <i class="fa fa-male ml-1 mt-3 mb-3" style="font-size: 18px; ">
+                                        </i>
+                                    </div>
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        {{loginUserInfo.weight}}
+                                    </div>
+                                    <div class="col-xl-2 col-2  ">
+                                        <i class="fa fa-medkit ml-1 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        {{loginUserInfo.blood_Group}}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-12 col-xl-1 col-sm-12  "></div> -->
+                        </div>
+
+                        <div class="row">
+                            <div *ngIf='isAdmin' class="col-6 mt-3 mb-3 text-center">
+                                <a href="javascript:void(0)" (click)="editmemberInfo(plan)"
+                                    class="btn btn-outline-primary" style=" ">Edit</a>
+                            </div>
+                            <div *ngIf='isAdmin' class="col-6 mt-3 mb-3 text-center">
+                                <a href="javascript:void(0)" (click)="deletememberInfo(plan)"
+                                    class="btn btn-outline-primary">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xl-3 "></div>
+    </div>
+
+    <div class="row border border-primary">
+        <!--  -->
+        <div class="col-xl-1 "></div>
+        <div class="col-xl-8 ">
+
+            <div class="card button one" style="margin-top: 10px;  border-radius: 20px; ">
+
+                <div class="card-body">
+                    <div class="">
+
+                        <div class="row " style="margin-top: 5px;">
+
+                            <h1 class="ml-4" style="font-size: 25px;  ">Personal Information</h1>
+
+                            <div class="col-12">
+                                <div class="row    ">
+                                    <div class="col-xl-1 ">
+                                        <i class="fa fa-user text-center ml-2 mt-4 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-11  font mb-3 ">
+                                        <h1 style="font-size: 18px;  margin-top: 20px;">
+                                            My name is {{loginUserInfo.fullname}}.. I studied as
+                                            {{loginUserInfo.education}} and my occupation is
+                                            {{loginUserInfo.occupation}}. I am
+                                            currently living in {{loginUserInfo.current_Address}}</h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 ">
+                                <div class=" row ">
+
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fa fa-male ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        Height is {{loginUserInfo.height}}
+                                    </div>
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fa fa-male  ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        Weight is {{loginUserInfo.weight}}
+                                    </div>
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fa fa-circle-o-notch ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        {{loginUserInfo.marital_Status}}
+                                    </div>
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fa fa-map-marker ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        Lives in {{loginUserInfo.city}}
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 ">
+                                <div class=" row ">
+
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fa fa-male ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        Blood Group is {{loginUserInfo.blood_Group}}
+                                    </div>
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fa fa-male ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        Zodiac Sign is {{loginUserInfo.zodiac_Sign}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="hr-line" style="margin-top: 30px;margin-bottom: 30px;"></div>
+                        </div>
+
+                        <div class="row " style="margin-top: 5px;">
+                            <div class="col-12">
+                                <h1 class="ml-4" style="font-size: 25px;  ">Professional Details</h1>
+                            </div>
+
+                            <div class="col-xl-6 ">
+                                <div class=" row ">
+
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fa fa-graduation-cap ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        {{loginUserInfo.education}}
+                                    </div>
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fa fa-briefcase  ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        {{loginUserInfo.occupation}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 ">
+                                <div class=" row ">
+
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fa fa-inr ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        Earns Rs. {{loginUserInfo.annual_Income}} annually
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="hr-line" style="margin-top: 30px;margin-bottom: 30px;"></div>
+                        </div>
+
+                        <div class="row " style="margin-top: 5px;">
+                            <div class="col-12">
+                                <h1 class="ml-4" style="font-size: 25px;  ">Religious Background</h1>
+                            </div>
+
+                            <div class="col-xl-6 ">
+                                <div class=" row ">
+
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fa fa-square ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        {{loginUserInfo.caste}}
+                                    </div>
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fa fa-star  ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        Nakshatras is {{loginUserInfo.nakshatras}}
+                                    </div>
+
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fa fa-circle-o  ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        Mangal - {{loginUserInfo.mangal}}
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 ">
+                                <div class=" row ">
+
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fa fa-superpowers ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        Zodiac Sign is {{loginUserInfo.zodiac_Sign}}
+                                    </div>
+
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fa fa-circle-o ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        Nadi is {{loginUserInfo.nadi}}
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="hr-line" style="margin-top: 30px;margin-bottom: 30px;"></div>
+                        </div>
+
+                        <div class="row " style="margin-top: 5px;">
+                            <div class="col-12">
+                                <h1 class="ml-4" style="font-size: 25px;  ">About Family</h1>
+                            </div>
+
+                            <div class="col-xl-6 ">
+                                <div class=" row ">
+
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fas fa-users ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        {{loginUserInfo.caste}}
+                                    </div>
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fas fa-male  ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        {{loginUserInfo.brother}} Brother
+                                    </div>
+
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fas fa-male  ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        {{loginUserInfo.married_Brother}} Married Brother
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 ">
+                                <div class=" row ">
+
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fas fa-female ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        {{loginUserInfo.sister}} Sister
+                                    </div>
+
+                                    <div class="col-xl-2 col-2">
+                                        <i class="fas fa-female ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                    <div class="col-xl-10 col-4 font mt-3 mb-3 ">
+                                        {{loginUserInfo.married_Sister}} Married Sister
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="hr-line" style="margin-top: 30px;margin-bottom: 30px;"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xl-3 ">
+
+            <div class="card cardshadow" style="margin-top: 10px; background-color: white;  border-radius: 20px; ">
+                <h1 class="text-center mt-4" style="color: #fa7a75; font-size: 20px; ">Matching Profiles</h1>
+                <div class="card-body">
+                    <app-similar-profiles></app-similar-profiles>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- sroll to top button -->
+    <!-- <div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
+            <i class="fa fa-arrow-circle-up" (click)="scrollToTop()" style="font-size: 40px;color:dodgerblue ;"
+                aria-hidden="true"></i>
+        </div> -->
+
+
+    <div class="row " style="height: 80px;"></div>
+
+
+
+
+    <div class="row">
+        <div class="col-xl-1"></div>
+        <div class="col-xl-10">
+            <app-related-cards></app-related-cards>
+        </div>
+        <div class="col-xl-1"></div>
+
+    </div>
+
+
+</div>
+
+
+<div class="">
+    <app-footer></app-footer>
+</div>
