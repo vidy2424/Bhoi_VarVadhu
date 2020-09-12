@@ -9,14 +9,14 @@
   .btn{min-width:100px;}
 
   .card {
-      box-shadow: 0 4px 8px 0 #ed8480;
+      box-shadow: 0 4px 8px 0 #dad6d6;
       transition: 0.3s;
       /* width: 40%; */
       opacity: 50;     
     }
 
     .card:hover {
-      box-shadow: 0 18px 18px 0px #ff4b45;
+      box-shadow: 0 11px 11px 0px #b1aeae;
     }
 
     .font{

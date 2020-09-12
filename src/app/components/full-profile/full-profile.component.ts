@@ -14,6 +14,7 @@ import { tokenName } from '@angular/compiler';
 import { RegisterFormService } from 'src/app/formio.service.ts/register-form.service';
 import { RegisterServiceService } from 'src/app/sevices/register-service.service';
 import { MarriageService } from 'src/app/sevices/marriage.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-full-profile',
@@ -40,6 +41,8 @@ export class FullProfileComponent implements OnInit {
   url: string = 'student';
   usersList: Array<Student>;
   productInfo = [];
+
+  singleMemberInfo = [];
   configData = {};
   formName = 'Create Plan';
   isAdmin = false;
@@ -65,14 +68,16 @@ export class FullProfileComponent implements OnInit {
   constructor(
 
     private registerFormService: RegisterFormService,
-    private registerServiceService : RegisterServiceService,
+    private registerServiceService: RegisterServiceService,
     private marriageService: MarriageService,
-    
+
     private modalService: BsModalService,
 
     private sanitizer: DomSanitizer,
     private helperService: HelperService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private route: ActivatedRoute
+
   ) { }
 
   formIoOptions = {
@@ -94,45 +99,62 @@ export class FullProfileComponent implements OnInit {
     this.getbrideInfo(1);
     // this.isAdmin = this.userinfo['role'] === 'ADMIN' ? true : false;
     this.userinfo(tokenName);
+    // this.route.params.subscribe(param => {
+    //   this.viewGroomById(param.id);
+    // }, err => {
+    //   console.log(err);
+    // });
+
+    // this.route.params.subscribe(param => {
+    //   this.viewBrideById(param.id);
+    // }, err => {
+    //   console.log(err);
+    // });
+
+    this.route.params.subscribe(param => {
+      this.viewAllById(param.id);
+    }, err => {
+      console.log(err);
+    });
+
   }
- 
 
   getbrideInfo(page: any): void {
     this.marriageService.getbrideInfo(page)
-        .subscribe(result => {
-            console.log(result);
-            this.productInfo = result[0];
-            this.pagination.total = result[1] && result[1] % this.pagination.pageSize === 0 ?
-            Math.floor(result[1] / this.pagination.pageSize) :
-            Math.floor(result[1] / this.pagination.pageSize) + 1;
-   
-        }, err => {
-            alert(err);
-        })
+      .subscribe(result => {
+        console.log(result);
+        this.productInfo = result[0];
+        this.pagination.total = result[1] && result[1] % this.pagination.pageSize === 0 ?
+          Math.floor(result[1] / this.pagination.pageSize) :
+          Math.floor(result[1] / this.pagination.pageSize) + 1;
+
+      }, err => {
+        alert(err);
+      })
   }
 
   getPath(plan): string {
     const path = this.path + `${plan.code}`;
     return path;
-}
+  }
 
-sanitizeImageUrl(imageName: string): SafeUrl {
-  const imageUrl = this.path + imageName + '.jpg';
-  return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
-}
+  sanitizeImageUrl(imageName: string): SafeUrl {
+    const imageUrl = this.path + imageName + '.jpg';
+    return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
+  }
 
- 
 
-// getmemberInfo(page: any): void {
-//   this.registerServiceService.getmemberInfo(0)
-//       .subscribe(result => {
-//           console.log(result[0]);
-//           this.productInfo = result[0];
- 
-//       }, err => {
-//           alert(err);
-//       })
-// }
+
+  // getmemberInfo(page: any): void {
+  //   this.registerServiceService.getmemberInfo(0)
+  //       .subscribe(result => {
+  //           console.log(result[0]);
+  //           this.productInfo = result[0];
+
+  //       }, err => {
+  //           alert(err);
+  //       })
+  // }
 
   addmemberInfo(): void {
     this.configData = {
@@ -141,12 +163,45 @@ sanitizeImageUrl(imageName: string): SafeUrl {
     this.openModalWithClass(this._template);
   }
 
+  // viewGroomById(id: any) {
+  //   this.marriageService.viewDetailByID(id)
+  //     .subscribe(result => {
+  //       console.log(JSON.parse(result));
+  //       result = JSON.parse(result);
+  //       this.singleMemberInfo = result[0];
+  //     }, err => {
+  //       // alert(err);
+  //     });
+  // }
+
+  // viewBrideById(id: any) {
+  //   this.marriageService.viewDetailByID(id)
+  //     .subscribe(result => {
+  //       console.log(JSON.parse(result));
+  //       result = JSON.parse(result);
+  //       this.singleMemberInfo = result[0];
+  //     }, err => {
+  //       // alert(err);
+  //     });
+  // }
+
+  viewAllById(id: any) {
+    this.marriageService.viewDetailByID(id)
+      .subscribe(result => {
+        console.log(JSON.parse(result));
+        result = JSON.parse(result);
+        this.singleMemberInfo = result[0];
+      }, err => {
+        // alert(err);
+      });
+  }
+
   userinfo(token) {
     this.loginService.getuserInfo()
       .subscribe(result => {
         this.helperService.userData = result;
         this.isAdmin = result['role'] === 'ADMIN' ? true : false;
-        this. loginUserInfo = result;
+        this.loginUserInfo = result;
 
       }, err => {
         // alert(err);
@@ -167,33 +222,33 @@ sanitizeImageUrl(imageName: string): SafeUrl {
     this.selectedFile = event.target.files[0];
   }
 
- 
+
 
   upload(): void {
     const data = this.formIo.submission.data;
     this.submissionData['data'] = data;
     this.submissionData['files'] = this.selectedFile;
     if (data && data['id']) {
-      this.registerServiceService.editmemberInfo(this.submissionData['data'],this.submissionData['files'], this.submissionData['data']['id'])
+      this.registerServiceService.editmemberInfo(this.submissionData['data'], this.submissionData['files'], this.submissionData['data']['id'])
         .subscribe(result => {
           console.log(result);
         }, err => {
           // alert(err);
         });
-    }else{
-    this.registerServiceService.upload(this.submissionData)
-       .subscribe(event => {
- 
-      },
-        err => {
-          this.progress = 0;
-          this.message = 'Could not upload the file!';
-          this.currentFile = undefined;
-        });
-  }
-}
+    } else {
+      this.registerServiceService.upload(this.submissionData)
+        .subscribe(event => {
 
-deletememberInfo(item: any): void {
+        },
+          err => {
+            this.progress = 0;
+            this.message = 'Could not upload the file!';
+            this.currentFile = undefined;
+          });
+    }
+  }
+
+  deletememberInfo(item: any): void {
     this.registerServiceService.deletememberInfo(item.id)
       .subscribe(result => {
         console.log(result);
@@ -201,16 +256,16 @@ deletememberInfo(item: any): void {
         alert(err);
       });
   }
- 
+
 
   editmemberInfo(item: any): void {
     this.configData = {
-        formName: this.formName,
-        selectedItem: item
+      formName: this.formName,
+      selectedItem: item
     };
     this.openModalWithClass(this._template, item);
     this.formName = `Edit Plan: ${item.fullName}`;
-}
+  }
 
   addPlan(): void {
     this.configData = {
@@ -230,23 +285,23 @@ deletememberInfo(item: any): void {
 
 
   // sroll button
-  @HostListener ("window:scroll", [])
+  @HostListener("window:scroll", [])
   onWindowScroll() {
-      if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
-          this.windowScrolled = true;
-      } 
-     else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
-          this.windowScrolled = false;
-      }
+    if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
+      this.windowScrolled = true;
+    }
+    else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
+      this.windowScrolled = false;
+    }
   }
   scrollToTop() {
-      (function smoothscroll() {
-          var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-          if (currentScroll > 0) {
-              window.requestAnimationFrame(smoothscroll);
-              window.scrollTo(0, currentScroll - (currentScroll / 8));
-          }
-      })();
+    (function smoothscroll() {
+      var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      if (currentScroll > 0) {
+        window.requestAnimationFrame(smoothscroll);
+        window.scrollTo(0, currentScroll - (currentScroll / 8));
+      }
+    })();
   }
 
   setPreviousAndNextPage(pagetype: any): void {
@@ -301,7 +356,7 @@ deletememberInfo(item: any): void {
   //   });
   // }
 
- 
+
 
 
 }

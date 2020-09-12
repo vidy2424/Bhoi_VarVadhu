@@ -14,7 +14,8 @@ import { tokenName } from '@angular/compiler';
 import { RegisterFormService } from 'src/app/formio.service.ts/register-form.service';
 import { RegisterServiceService } from 'src/app/sevices/register-service.service';
 import { MarriageService } from 'src/app/sevices/marriage.service';
-
+import { Router } from '@angular/router';
+ 
 
 
 @Component({
@@ -75,7 +76,9 @@ export class GroomComponent implements OnInit {
 
     private sanitizer: DomSanitizer,
     private helperService: HelperService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
+
   ) { }
 
   formIoOptions = {
@@ -97,6 +100,7 @@ export class GroomComponent implements OnInit {
     this.getgroomInfo(1);
     // this.isAdmin = this.userinfo['role'] === 'ADMIN' ? true : false;
     this.userinfo(tokenName);
+    this.router;
   }
  
 
@@ -143,6 +147,13 @@ sanitizeImageUrl(imageName: string): SafeUrl {
     };
     this.openModalWithClass(this._template);
   }
+
+  viewGroom(userId: any){
+    const url = '/Profile/';
+    this.router.navigate([url, userId]);
+    }
+
+
 
   userinfo(token) {
     this.loginService.getuserInfo()
@@ -229,6 +240,9 @@ deletememberInfo(item: any): void {
     }
     this.formIo.form = this.registerFormService.getForm();
   }
+
+ 
+
 
 
   // sroll button

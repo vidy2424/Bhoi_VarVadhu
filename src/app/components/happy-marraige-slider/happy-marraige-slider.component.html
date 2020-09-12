@@ -1,8 +1,8 @@
 <div class="container-fluid ">
     <!-- <div class="text-center mt-3">
         <button type="button" class="btn btn-primary text-center;" (click)="addmemberInfo()">Create</button>
-    </div> -->
-    <br>
+    </div>
+    <br> -->
 
     <!-- <ng-template #template>
         <div class="modal-header">
@@ -36,33 +36,27 @@
           <!-- [disabled]="!submissionData" -->
     <!-- </ng-template> -->
 
-    <div class="col-sm-12" style="">
-        <div class="  mt-4" style="">
-            <!-- <img class="col-sm-12 hero__background " src="assets/image/a22.jpg"> -->
-            
-            <div class="card cardshadow"  style="margin-top: 50px; background-color: white;  border-radius: 20px;">
-                <h1 class="text-center mt-4 fontawsm" style="color: #fa7a75; ">Matching Profiles</h1>
-                <div class="card-body">
-                         <carousel class="carosel col-sm-12" [itemsPerSlide]="5" [singleSlideOffset]="singleSlideOffset"
-                            [interval]=5000 [noWrap]="noWrap" [showIndicators]="false">
-                            <slide *ngFor="let plan of productInfo; let index=index" class="mx-auto fade3">
-                                <div class="col-12 p-1  mt-4 mb-4">
-                                    <div class="card cardhover p-0 ml-2 mr-2" style="width: auto; ">
-                                        <img [src]="sanitizeImageUrl(plan.code)" alt="image slide"
-                                            style="display: block; width: 100%; height: 200px">
-                                        <div class="card-body mt-2 mb-2">
-                                            <h5 class="card-title text-center fontawsm">{{plan.fullName}}</h5>
-                                        </div>
-                                        <div class="text-center mt-2 mb-2">
-                                            <button type="button" class="btn btn-outline-success fontawsm" (click)="viewbyID(plan.id)">Info</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </slide>
-                        </carousel>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row " style="height: 80px;"></div>
+    <!-- <div class="col-sm-12 border border-primary" > -->
+        <!-- <div class="" style=""> -->
+             <carousel class="carosel col-sm-12" [itemsPerSlide]="1" [singleSlideOffset]="singleSlideOffset" [interval]=5000
+                [noWrap]="noWrap" [showIndicators]="false">
+                <slide *ngFor="let plan of productInfo; let index=index" class="mx-auto fade3">
+                    <div class="col-12 ">
+                        <div class="card cardshadow mb-2 p-0" style="border-radius: 15px;">
+                            <img [src]="sanitizeImageUrl(plan.code)" alt="image slide"
+                                style="display: block; width: 100%; height: 200px; border-radius: 15px; ">
+                            <div class="card-body mt-2 mb-2">
+                                <h5 class="card-title text-center fontawsm">{{plan.fullName}}</h5>
+                            </div>
+                            <div class="text-center mt-2 mb-2">
+                                <button type="button" class="btn btn-outline-success fontawsm">Info</button>
+                            </div>
+                        </div>
+                    </div>
+                </slide>
+            </carousel>
+        <!-- </div> -->
+    <!-- </div> -->
+   
 </div>
+  

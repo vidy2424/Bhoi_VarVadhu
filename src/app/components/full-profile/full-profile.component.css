@@ -35,6 +35,14 @@
 	transition: 0.3s;
   }
 
+.icon{
+color: #27a04b;
+}
+
+.titlecolor{
+    background-color: crimson;
+}
+
   /* #b09492 */
   /* .card:hover {
 	box-shadow: 0 18px 16px 0px #b09492;

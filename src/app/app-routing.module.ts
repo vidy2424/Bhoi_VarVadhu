@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'Bride', component: BridesComponent },
   { path: 'Groom', component: GroomComponent },
   { path: 'sidenav', component: SidenavComponent },
-  { path: 'Profile', component: FullProfileComponent },
+  { path: 'Profile/:id', component: FullProfileComponent },
 ];
 
 @NgModule({

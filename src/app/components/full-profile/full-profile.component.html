@@ -5,7 +5,7 @@
     <app-sidenav></app-sidenav>
 </div> -->
 
-<div class="container-fluid border border-primary">
+<div class="container-fluid ">
 
     <ng-template #template>
         <div class="modal-header">
@@ -35,8 +35,9 @@
 
     <div class="row " style="height: 80px;"></div>
 
-    <div class="row border border-primary">
+    <div class="row">
         <!--  -->
+        <!-- {{info.city}} -->
         <div class="col-xl-1 "></div>
         <div class="col-xl-8 ">
 
@@ -51,46 +52,47 @@
                             <!-- <div class="col-12 col-xl-1 col-sm-12  "></div> -->
                             <div class="col-12 col-xl-4 col-sm-12 ">
 
-                                <img [src]="sanitizeImageUrl(loginUserInfo.code)" class="mb-3" alt="image slide"
-                                    style="display: block; margin: auto; width: 60%; height: 200px">
+                                <img [src]="sanitizeImageUrl(singleMemberInfo.code)" class="mb-3" alt="image slide"
+                                    style="display: block; margin: auto; border-radius: 15px; width: 60%; height: 200px">
 
                             </div>
                             <div class="col-12 col-xl-4 col-sm-12 ">
                                 <div class="row">
                                     <div class="col-12 "
                                         style="font-family: 'Montserrat', sans-serif; font-size: 20px;">
-                                        {{loginUserInfo.fullname}}</div>
+                                        {{singleMemberInfo.fullName}}
+                                    </div>
                                     <div class="col-xl-2 col-2 ">
-                                        <i class="fa fa-graduation-cap ml-1 mt-3 mb-3" style="font-size: 18px; "
-                                            aria-hidden="true">
+                                        <i class="fa fa-graduation-cap icon ml-1 mt-3 mb-3" title='Education'
+                                            style="font-size: 18px; " aria-hidden="true">
                                         </i>
                                     </div>
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        Studied {{loginUserInfo.education}}
+                                        Studied {{singleMemberInfo.education}}
                                     </div>
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-briefcase ml-1 mt-3 mb-3" style="font-size: 18px; "
-                                            aria-hidden="true">
+                                        <i class="fa fa-briefcase icon ml-1 mt-3 mb-3" title='Occupation'
+                                            style="font-size: 18px; " aria-hidden="true">
                                         </i>
                                     </div>
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        {{loginUserInfo.occupation}}
+                                        {{singleMemberInfo.occupation}}
                                     </div>
                                     <div class="col-xl-2 col-2  ">
-                                        <i class="fa fa-inr ml-1 mt-3 mb-3" style="font-size: 18px; "
-                                            aria-hidden="true">
+                                        <i class="fa fa-inr ml-1 mt-3 mb-3" title='Annual Income'
+                                            style="font-size: 18px; " aria-hidden="true">
                                         </i>
                                     </div>
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        {{loginUserInfo.annual_Income}}
+                                        {{singleMemberInfo.annual_Income}}
                                     </div>
                                     <div class="col-xl-2 col-2  ">
-                                        <i class="fa fa-map-marker ml-1 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-map-marker ml-1 mt-3 mb-3" title='City' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        Lives in {{loginUserInfo.city}}
+                                        Lives in {{singleMemberInfo.city}}
                                     </div>
 
                                 </div>
@@ -101,35 +103,35 @@
                                     <div class="col-12 " style="height: 32px;"></div>
 
                                     <div class="col-xl-2 col-2  ">
-                                        <i class="fa fa-square ml-1 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-square ml-1 mt-3 mb-3" title='Caste' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        {{loginUserInfo.caste}}
+                                        {{singleMemberInfo.caste}}
                                     </div>
                                     <div class="col-xl-2 col-2  ">
-                                        <i class="fa fa-male ml-1 mt-3 mb-3" style="font-size: 20px; "
+                                        <i class="fa fa-male ml-1 mt-3 mb-3" title='Height' style="font-size: 20px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        {{loginUserInfo.height}}
+                                        {{singleMemberInfo.height}}
                                     </div>
                                     <div class="col-xl-2 col-2  ">
-                                        <i class="fa fa-male ml-1 mt-3 mb-3" style="font-size: 18px; ">
+                                        <i class="fa fa-male ml-1 mt-3 mb-3" title='Weight' style="font-size: 18px; ">
                                         </i>
                                     </div>
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        {{loginUserInfo.weight}}
+                                        {{singleMemberInfo.weight}}
                                     </div>
                                     <div class="col-xl-2 col-2  ">
-                                        <i class="fa fa-medkit ml-1 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-medkit ml-1 mt-3 mb-3" title='Blood Group' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        {{loginUserInfo.blood_Group}}
+                                        {{singleMemberInfo.blood_Group}}
                                     </div>
                                 </div>
                             </div>
@@ -151,10 +153,18 @@
             </div>
 
         </div>
-        <div class="col-xl-3 "></div>
-    </div>
+        <div class="col-xl-3 ">
 
-    <div class="row border border-primary">
+            <div class="card cardshadow"
+                style="margin-top: 50px; background-color: white; height: 307px; border-radius: 20px; ">
+                <div class="card-body">
+                    <img src="assets/image/wedgif.gif" alt="image slide"
+                        style="display: block; border-radius: 10px; width: 100%; height: 100%">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ">
         <!--  -->
         <div class="col-xl-1 "></div>
         <div class="col-xl-8 ">
@@ -171,17 +181,17 @@
                             <div class="col-12">
                                 <div class="row    ">
                                     <div class="col-xl-1 ">
-                                        <i class="fa fa-user text-center ml-2 mt-4 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-user text-center ml-2 mt-4 mb-3" title='Info' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-11  font mb-3 ">
                                         <h1 style="font-size: 18px;  margin-top: 20px;">
-                                            My name is {{loginUserInfo.fullname}}.. I studied as
-                                            {{loginUserInfo.education}} and my occupation is
-                                            {{loginUserInfo.occupation}}. I am
-                                            currently living in {{loginUserInfo.current_Address}}</h1>
+                                            My name is {{singleMemberInfo.fullName}}.. I studied
+                                            {{singleMemberInfo.education}} and my occupation is
+                                            {{singleMemberInfo.occupation}}. I am
+                                            currently living in {{singleMemberInfo.current_Address}}</h1>
                                     </div>
                                 </div>
                             </div>
@@ -190,40 +200,40 @@
                                 <div class=" row ">
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-male ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-male ml-2 mt-3 mb-3" title='Height' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        Height is {{loginUserInfo.height}}
+                                        Height is {{singleMemberInfo.height}}
                                     </div>
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-male  ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-male  ml-2 mt-3 mb-3" title='Weight' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        Weight is {{loginUserInfo.weight}}
+                                        Weight is {{singleMemberInfo.weight}}
                                     </div>
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-circle-o-notch ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-circle-o-notch ml-2 mt-3 mb-3" title='Marital Status' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        {{loginUserInfo.marital_Status}}
+                                        {{singleMemberInfo.marital_Status}}
                                     </div>
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-map-marker ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-map-marker ml-2 mt-3 mb-3" title='city' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        Lives in {{loginUserInfo.city}}
+                                        Lives in {{singleMemberInfo.city}}
                                     </div>
 
                                 </div>
@@ -233,22 +243,22 @@
                                 <div class=" row ">
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-male ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-male ml-2 mt-3 mb-3" title='Blood Group' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        Blood Group is {{loginUserInfo.blood_Group}}
+                                        Blood Group is {{singleMemberInfo.blood_Group}}
                                     </div>
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-male ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-male ml-2 mt-3 mb-3" title='Zodiac Sign' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        Zodiac Sign is {{loginUserInfo.zodiac_Sign}}
+                                        Zodiac Sign is {{singleMemberInfo.zodiac_Sign}}
                                     </div>
                                 </div>
                             </div>
@@ -258,29 +268,29 @@
 
                         <div class="row " style="margin-top: 5px;">
                             <div class="col-12">
-                                <h1 class="ml-4" style="font-size: 25px;  ">Professional Details</h1>
+                                <h1 class="ml-4" style="font-size: 25px;">Professional Details</h1>
                             </div>
 
                             <div class="col-xl-6 ">
                                 <div class=" row ">
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-graduation-cap ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-graduation-cap ml-2 mt-3 mb-3" title='Education' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        {{loginUserInfo.education}}
+                                        {{singleMemberInfo.education}}
                                     </div>
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-briefcase  ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-briefcase  ml-2 mt-3 mb-3" title='occupation' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        {{loginUserInfo.occupation}}
+                                        {{singleMemberInfo.occupation}}
                                     </div>
                                 </div>
                             </div>
@@ -289,13 +299,13 @@
                                 <div class=" row ">
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-inr ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-inr ml-2 mt-3 mb-3" title='Annual Income' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        Earns Rs. {{loginUserInfo.annual_Income}} annually
+                                        Earns Rs. {{singleMemberInfo.annual_Income}} annually
                                     </div>
                                 </div>
                             </div>
@@ -312,32 +322,32 @@
                                 <div class=" row ">
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-square ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-square ml-2 mt-3 mb-3" title='Caste' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        {{loginUserInfo.caste}}
+                                        {{singleMemberInfo.caste}}
                                     </div>
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-star  ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-star  ml-2 mt-3 mb-3" title='Nakshatras' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        Nakshatras is {{loginUserInfo.nakshatras}}
+                                        Nakshatras is {{singleMemberInfo.nakshatras}}
                                     </div>
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-circle-o  ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-circle-o  ml-2 mt-3 mb-3" title='Mangal' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        Mangal - {{loginUserInfo.mangal}}
+                                        Mangal - {{singleMemberInfo.mangal}}
                                     </div>
 
                                 </div>
@@ -347,23 +357,23 @@
                                 <div class=" row ">
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-superpowers ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-superpowers ml-2 mt-3 mb-3" title='Zodiac Sign' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        Zodiac Sign is {{loginUserInfo.zodiac_Sign}}
+                                        Zodiac Sign is {{singleMemberInfo.zodiac_Sign}}
                                     </div>
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-circle-o ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fa fa-circle-o ml-2 mt-3 mb-3" title='Nadi' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        Nadi is {{loginUserInfo.nadi}}
+                                        Nadi is {{singleMemberInfo.nadi}}
                                     </div>
 
                                 </div>
@@ -381,32 +391,32 @@
                                 <div class=" row ">
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fas fa-users ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fas fa-users ml-2 mt-3 mb-3" title='Caste' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        {{loginUserInfo.caste}}
+                                        {{singleMemberInfo.caste}}
                                     </div>
                                     <div class="col-xl-2 col-2">
-                                        <i class="fas fa-male  ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fas fa-male  ml-2 mt-3 mb-3" title='Brother' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        {{loginUserInfo.brother}} Brother
+                                        {{singleMemberInfo.brother}} Brother
                                     </div>
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fas fa-male  ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fas fa-male  ml-2 mt-3 mb-3" title='Married Brother' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        {{loginUserInfo.married_Brother}} Married Brother
+                                        {{singleMemberInfo.married_Brother}} Married Brother
                                     </div>
 
                                 </div>
@@ -416,23 +426,23 @@
                                 <div class=" row ">
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fas fa-female ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fas fa-female ml-2 mt-3 mb-3" title='Sister' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        {{loginUserInfo.sister}} Sister
+                                        {{singleMemberInfo.sister}} Sister
                                     </div>
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fas fa-female ml-2 mt-3 mb-3" style="font-size: 18px; "
+                                        <i class="fas fa-female ml-2 mt-3 mb-3" title='Married Sister' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
 
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
-                                        {{loginUserInfo.married_Sister}} Married Sister
+                                        {{singleMemberInfo.married_Sister}} Married Sister
                                     </div>
 
                                 </div>
@@ -455,10 +465,15 @@
 
                 </div>
             </div>
+
+            <div class="card cardshadow " style="margin-top: 10px; background-color: white;  border-radius: 20px; ">
+                <h1 class="text-center mt-4" style="color: #fa7a75; font-size: 20px; ">Happy Marriages</h1>
+                <div class="card-body">
+                    <app-happy-marraige-slider></app-happy-marraige-slider>
+                </div>
+            </div>
         </div>
     </div>
-
-
     <!-- sroll to top button -->
     <!-- <div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
             <i class="fa fa-arrow-circle-up" (click)="scrollToTop()" style="font-size: 40px;color:dodgerblue ;"
@@ -470,8 +485,7 @@
 
 
 
-
-    <div class="row">
+    <div class="row ">
         <div class="col-xl-1"></div>
         <div class="col-xl-10">
             <app-related-cards></app-related-cards>
@@ -480,10 +494,7 @@
 
     </div>
 
-
 </div>
-
-
 <div class="">
-    <app-footer></app-footer>
+    <app-footer-homepage></app-footer-homepage>
 </div>

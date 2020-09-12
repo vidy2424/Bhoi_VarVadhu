@@ -13,6 +13,7 @@ import { LoginService } from 'src/app/sevices/login.service';
 import { tokenName } from '@angular/compiler';
 import { RegisterFormService } from 'src/app/formio.service.ts/register-form.service';
 import { RegisterServiceService } from 'src/app/sevices/register-service.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -60,7 +61,9 @@ export class RelatedCardsComponent implements OnInit {
     private modalService: BsModalService,
     private sanitizer: DomSanitizer,
     private helperService: HelperService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
+
   ) { }
 
   formIoOptions = {
@@ -82,6 +85,8 @@ export class RelatedCardsComponent implements OnInit {
     this.getmemberInfo(0);
     // this.isAdmin = this.userinfo['role'] === 'ADMIN' ? true : false;
     this.userinfo(tokenName);
+    this.router;
+
   }
 
  
@@ -95,6 +100,10 @@ sanitizeImageUrl(imageName: string): SafeUrl {
   return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
 }
 
+viewbyID(userId: any){
+  const url = '/Profile/';
+  this.router.navigate([url, userId]);
+  }
  
 
 getmemberInfo(start: any): void {

@@ -14,6 +14,7 @@ import { tokenName } from '@angular/compiler';
 import { RegisterFormService } from 'src/app/formio.service.ts/register-form.service';
 import { RegisterServiceService } from 'src/app/sevices/register-service.service';
 import { MarriageService } from 'src/app/sevices/marriage.service';
+import { Router } from '@angular/router';
 
 
 
@@ -75,7 +76,9 @@ export class BridesComponent implements OnInit {
 
     private sanitizer: DomSanitizer,
     private helperService: HelperService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
+
   ) { }
 
   formIoOptions = {
@@ -97,6 +100,7 @@ export class BridesComponent implements OnInit {
     this.getbrideInfo(1);
     // this.isAdmin = this.userinfo['role'] === 'ADMIN' ? true : false;
     this.userinfo(tokenName);
+    this.router;
   }
  
 
@@ -113,6 +117,11 @@ export class BridesComponent implements OnInit {
             alert(err);
         })
   }
+
+  viewBride(userId: any){
+    const url = '/Profile/';
+    this.router.navigate([url, userId]);
+    }
 
   getPath(plan): string {
     const path = this.path + `${plan.code}`;

@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Component, OnInit, ViewChild, Input, TemplateRef, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, TemplateRef } from '@angular/core';
 import { FormConfig } from 'src/interface/formio-config';
 import { ClientProductsService } from 'src/app/formio.service.ts/client-products.service';
 import { ClientProductsServiceService } from 'src/app/sevices/client-products-service.service';
@@ -12,16 +12,14 @@ import { HelperService } from 'src/app/Helper/helper.service';
 import { LoginService } from 'src/app/sevices/login.service';
 import { tokenName } from '@angular/compiler';
 import { RegisterFormService } from 'src/app/formio.service.ts/register-form.service';
-import { RegisterServiceService } from 'src/app/sevices/register-service.service';
-import { MarriageService } from 'src/app/sevices/marriage.service'; 
-import { Router } from '@angular/router';
+import { RegisterServiceService } from 'src/app/sevices/register-service.service'; 
 
 @Component({
-  selector: 'app-similar-profiles',
-  templateUrl: './similar-profiles.component.html',
-  styleUrls: ['./similar-profiles.component.css']
+  selector: 'app-happy-marraige-slider',
+  templateUrl: './happy-marraige-slider.component.html',
+  styleUrls: ['./happy-marraige-slider.component.css']
 })
-export class SimilarProfilesComponent implements OnInit {
+export class HappyMarraigeSliderComponent implements OnInit {
 
   @Input('config') config;
   @ViewChild('template', { static: false }) _template;
@@ -35,8 +33,6 @@ export class SimilarProfilesComponent implements OnInit {
   };
   modalRef: BsModalRef;
   data = {};
-  windowScrolled: boolean;
-
 
   url: string = 'student';
   usersList: Array<Student>;
@@ -56,26 +52,14 @@ export class SimilarProfilesComponent implements OnInit {
   singleSlideOffset = true;
   noWrap = true;
 
-  pagination = {
-    page: 1,
-    total: 0,
-    pageSize: 5,
-    previousPage: 1
-  };
-
   constructor(
 
     private registerFormService: RegisterFormService,
     private registerServiceService : RegisterServiceService,
-    private marriageService: MarriageService,
-    
     private modalService: BsModalService,
-
     private sanitizer: DomSanitizer,
     private helperService: HelperService,
-    private loginService: LoginService,
-    private router: Router
-
+    private loginService: LoginService
   ) { }
 
   formIoOptions = {
@@ -94,33 +78,12 @@ export class SimilarProfilesComponent implements OnInit {
 
   ngOnInit() {
     this.isAdmin = this.helperService.userData['role'] === 'ADMIN' ? true : false;
-    this.getbrideInfo(1);
+    this.getmemberInfo(0);
     // this.isAdmin = this.userinfo['role'] === 'ADMIN' ? true : false;
     this.userinfo(tokenName);
-    this.router;
-
   }
+
  
-  viewbyID(userId: any){
-    const url = '/Profile/';
-    this.router.navigate([url, userId]);
-    }
-
-
-  getbrideInfo(page: any): void {
-    this.marriageService.getbrideInfo(page)
-        .subscribe(result => {
-            console.log(result);
-            this.productInfo = result[0];
-            this.pagination.total = result[1] && result[1] % this.pagination.pageSize === 0 ?
-            Math.floor(result[1] / this.pagination.pageSize) :
-            Math.floor(result[1] / this.pagination.pageSize) + 1;
-   
-        }, err => {
-            alert(err);
-        })
-  }
-
   getPath(plan): string {
     const path = this.path + `${plan.code}`;
     return path;
@@ -133,16 +96,15 @@ sanitizeImageUrl(imageName: string): SafeUrl {
 
  
 
-// getmemberInfo(page: any): void {
-//   this.registerServiceService.getmemberInfo(0)
-//       .subscribe(result => {
-//           console.log(result[0]);
-//           this.productInfo = result[0];
- 
-//       }, err => {
-//           alert(err);
-//       })
-// }
+getmemberInfo(start: any): void {
+  this.registerServiceService.getmemberInfo(0)
+      .subscribe(result => {
+          console.log(result[0]);
+          this.productInfo = result[0];
+      }, err => {
+          alert(err);
+      })
+}
 
   addmemberInfo(): void {
     this.configData = {
@@ -187,12 +149,12 @@ sanitizeImageUrl(imageName: string): SafeUrl {
         .subscribe(result => {
           console.log(result);
         }, err => {
-          // alert(err);
+          alert(err);
         });
     }else{
     this.registerServiceService.upload(this.submissionData)
        .subscribe(event => {
- 
+
       },
         err => {
           this.progress = 0;
@@ -218,7 +180,7 @@ deletememberInfo(item: any): void {
         selectedItem: item
     };
     this.openModalWithClass(this._template, item);
-    this.formName = `Edit Plan: ${item.fullName}`;
+    this.formName = `Edit Plan: ${item.client_product_name}`;
 }
 
   addPlan(): void {
@@ -236,72 +198,6 @@ deletememberInfo(item: any): void {
     }
     this.formIo.form = this.registerFormService.getForm();
   }
-
-
-  // sroll button
-  @HostListener ("window:scroll", [])
-  onWindowScroll() {
-      if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
-          this.windowScrolled = true;
-      } 
-     else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
-          this.windowScrolled = false;
-      }
-  }
-  scrollToTop() {
-      (function smoothscroll() {
-          var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-          if (currentScroll > 0) {
-              window.requestAnimationFrame(smoothscroll);
-              window.scrollTo(0, currentScroll - (currentScroll / 8));
-          }
-      })();
-  }
-
-  setPreviousAndNextPage(pagetype: any): void {
-    if (pagetype === 'Previous') {
-      this.getbrideInfo(this.pagination.page - 1);
-      this.pagination.page = this.pagination.page - 1;
-    } else if (pagetype === 'Next') {
-      this.getbrideInfo(this.pagination.page + 1);
-      this.pagination.page = this.pagination.page + 1;
-    }
-    this.removeActivePage(this.pagination.previousPage);
-    this.setActivePage(this.pagination.page);
-    this.pagination.previousPage = this.pagination.page;
-  }
-
-  counter(i: number) {
-    const arr = [];
-    for (let index = 0; index < i; index++) {
-      arr.push(index + 1);
-    }
-    return arr;
-  }
-
-  changePage(page: number): void {
-    this.pagination.page = page;
-    this.getbrideInfo(page);
-    this.removeActivePage(this.pagination.previousPage);
-    this.setActivePage(page);
-    this.pagination.previousPage = page;
-  }
-
-  setActivePage(page: number): void {
-    const element = document.getElementById(this.getId(page));
-    element.className = 'page-item active';
-  }
-
-  removeActivePage(page: number): void {
-    const element = document.getElementById(this.getId(page));
-    element.className = 'page-item';
-  }
-
-  getId(page: any): string {
-    return 'page_' + page;
-  }
-
-
 
   // submitForm(event: any): void {
   //   console.log(event);

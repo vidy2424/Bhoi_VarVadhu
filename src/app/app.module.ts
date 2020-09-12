@@ -44,8 +44,9 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { FullProfileComponent } from './components/full-profile/full-profile.component';
 import { RelatedCardsComponent } from './components/related-cards/related-cards.component';
 import { SimilarProfilesComponent } from './components/similar-profiles/similar-profiles.component';
-import { HappymarraigesliderComponent } from './happymarraigeslider/happymarraigeslider.component';
- 
+import { HappyMarraigeSliderComponent } from './components/happy-marraige-slider/happy-marraige-slider.component';
+import { FooterHomepageComponent } from './components/footer-homepage/footer-homepage.component';
+   
  // import { initProviderFactory } from './sevices/init-app-provider.factory';
 
 @NgModule({
@@ -78,7 +79,8 @@ import { HappymarraigesliderComponent } from './happymarraigeslider/happymarraig
     FullProfileComponent,
     RelatedCardsComponent,
     SimilarProfilesComponent,
-    HappymarraigesliderComponent
+    HappyMarraigeSliderComponent,
+    FooterHomepageComponent
   ],
   imports: [
     BrowserModule,
