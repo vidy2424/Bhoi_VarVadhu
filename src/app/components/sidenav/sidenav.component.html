@@ -33,17 +33,17 @@
 
         <div class="col-12">
             <img [src]="sanitizeImageUrl(loginUserInfo.code)" class="img-circle" alt="image slide"
-                style="display: block; width: 100%; height: 200px; margin-top: 80px;">
+                style="display: block; width: 90%; margin: auto; height: 200px; margin-top: 80px;">
 
-            <h1 class="text-center mt-2" style="font-size: 20px; color: white;">{{loginUserInfo.fullname}}</h1>
+            <h1 class="text-center font mt-2" style="font-size: 20px; font-weight:bolder;">{{loginUserInfo.fullname}}</h1>
      
             <div class="row mt-2">
                 <div class="col-4">
-                    <i class="fa fa-phone " style="font-size: 18px; margin-left: 50px; color: white;"
+                    <i class="fa fa-phone " style="font-size: 18px; margin-left: 50px;"
                         aria-hidden="true">
                     </i>
                 </div>
-                <div class="col-8" style="color: white; font-size: 14px;">
+                <div class="col-8 font" style=" font-size: 14px; font-weight: bold;">
                      {{loginUserInfo.contact_No_1}}
                 </div>
             </div>
@@ -54,7 +54,7 @@
             </div>
 
 
-            <div class="row mt-1">
+            <div class="row mt-1" style="border-radius: 20px;">
                 <div class="col mx-auto">
                     <!-- Accordion -->
                     <div id="accordionExample" class="accordion shadow">
@@ -64,7 +64,7 @@
                             <div id="headingOne" class="card-header bgcolor">
                                 <h6 class="mb-0"><a href="#" data-toggle="collapse" data-target="#collapseOne"
                                         aria-expanded="true" aria-controls="collapseOne"
-                                        class="d-block position-relative  text-uppercase collapsible-link py-2"
+                                        class="d-block position-relative text-uppercase collapsible-link py-2"
                                         style="text-decoration: none; color:white;font-size: 13px;">
 
                                         Personal Info</a></h6>
@@ -175,7 +175,7 @@
 
  
                         <!-- Accordion item 3 -->
-                        <div class="card">
+                        <div class="card " (click)="viewLoginuserProfile(loginUserInfo.id)">
                             <div id="" class="row card-header bgcolor">
                                 <h6 class="mb-0 col-8 "><a href="#" data-toggle="collapse"
                                         data-target="" aria-expanded="false" aria-controls=""

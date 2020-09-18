@@ -85,6 +85,7 @@ export class LoginFormService {
             .subscribe(result => {
                 this.helperService.token = result;
                 this.userinfo(result);
+ 
             }, err => {
                 alert(err);
             });
@@ -92,12 +93,14 @@ export class LoginFormService {
 
     userinfo(token) {
         this.loginService.getuserInfo()
-        .subscribe(result => {
-            this.helperService.userData = result;
-            this.router.navigate(['/']);
-        }, err => {
-            alert(err);
-        });
+            .subscribe(result => {
+                this.helperService.userData = result;
+                this.router.navigate(['/home']);
+                window.location.reload();
+
+            }, err => {
+                alert(err);
+            });
     }
 
     cleanup(): void {

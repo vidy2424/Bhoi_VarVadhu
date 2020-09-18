@@ -1,0 +1,164 @@
+<div class="a1">
+<div class="glassy-text">
+  That tiny pocket in jeans was designed to store pocket watches.
+</div>
+</div>
+
+<div class="container-fluid ">
+
+  <div class="row a1 border border-primary">
+
+    <div class="col-xl-3 col-2 "></div>
+
+    <div class="col-8  border border-primary ">
+      <div class=" mt-4 border border-primary">
+      <form>
+        <div class="row glassy-text border border-primary" style="margin-top: 100px;">
+          <div class="col-xl-1 col-1 "></div>
+
+          <div class="col-xl-2 col-12  form-group form-group-inline border border-primary">
+            <label for="exampleFormControlSelect1">Looking For</label>
+            <select class="form-control" id="groom_Bride" required [(ngModel)]="searchdata.groom_Bride" name="title">
+              <option value=groom>Groom</option>
+              <option value=bride>Bride</option>
+            </select>
+          </div>
+          <div class="col-xl-2 col-6 form-group form-group-inline border border-primary" > 
+            <label for="exampleFormControlSelect1">Age</label>
+            <select class="form-control" id="ageFrom" required [(ngModel)]="searchdata.ageFrom" name="title">
+              <option value="" selected>From</option>
+              <option>18</option>
+              <option>19</option>
+              <option>20</option>
+              <option>21</option>
+              <option>22</option>
+              <option>23</option>
+              <option>24</option>
+              <option>25</option>
+              <option>26</option>
+              <option>27</option>
+              <option>28</option>
+              <option>29</option>
+              <option>30</option>
+              <option>31</option>
+              <option>32</option>
+              <option>33</option>
+              <option>34</option>
+              <option>35</option>
+              <option>36</option>
+              <option>37</option>
+              <option>38</option>
+              <option>39</option>
+              <option>40</option>
+              <option>41</option>
+              <option>42</option>
+              <option>43</option>
+              <option>44</option>
+              <option>45</option>
+              <option>46</option>
+              <option>47</option>
+              <option>48</option>
+              <option>49</option>
+              <option>50</option>
+              <option>51</option>
+              <option>52</option>
+              <option>53</option>
+              <option>54</option>
+              <option>55</option>
+              <option>56</option>
+              <option>57</option>
+              <option>58</option>
+              <option>59</option>
+              <option>60</option>
+            </select>
+          </div>
+          <div class="col-xl-2 col-6 form-group form-group-inline border border-primary">
+            <label for="exampleFormControlSelect1">Age</label>
+            <select class="form-control" id="ageTo" required [(ngModel)]="searchdata.ageTo" name="title">
+              <option value="" selected>To</option>
+              <option>18</option>
+              <option>19</option>
+              <option>20</option>
+              <option>21</option>
+              <option>22</option>
+              <option>23</option>
+              <option>24</option>
+              <option>25</option>
+              <option>26</option>
+              <option>27</option>
+              <option>28</option>
+              <option>29</option>
+              <option>30</option>
+              <option>31</option>
+              <option>32</option>
+              <option>33</option>
+              <option>34</option>
+              <option>35</option>
+              <option>36</option>
+              <option>37</option>
+              <option>38</option>
+              <option>39</option>
+              <option>40</option>
+              <option>41</option>
+              <option>42</option>
+              <option>43</option>
+              <option>44</option>
+              <option>45</option>
+              <option>46</option>
+              <option>47</option>
+              <option>48</option>
+              <option>49</option>
+              <option>50</option>
+              <option>51</option>
+              <option>52</option>
+              <option>53</option>
+              <option>54</option>
+              <option>55</option>
+              <option>56</option>
+              <option>57</option>
+              <option>58</option>
+              <option>59</option>
+              <option>60</option>
+            </select>
+          </div>
+          <div class="col-xl-2 col-12 form-group form-group-inline border border-primary">
+            <label for="exampleFormControlSelect1">City</label>
+            <select class="form-control" id="city" required [(ngModel)]="searchdata.city" name="title">
+              <option value=mumbai>Mumbai</option>
+              <option value=pune>Pune</option>
+              <option value=nagpur>Nagpur</option>
+              <option value=malvan>Malvan</option>
+            </select>
+          </div>
+          <div class="col-xl-2 col-12 form-group form-group-inline border border-primary" placeholder="First name">
+            <label for="exampleFormControlSelect1">Education</label>
+            <select class="form-control" id="education" required [(ngModel)]="searchdata.education" name="title">
+              <option value=graduate>Graduate</option>
+              <option value=post-Graduate>Post-Graduate</option>
+              <option value=diploma>Diploma</option>
+              <option value=under-Graduate>Under-Graduate</option>
+              <option value=engineer>Engineer</option>
+              <option value=doctor>Doctor</option>
+              <option value=teacher>Teacher</option>
+              <option value=advocate>Advocate</option>
+
+            </select>
+          </div>
+          <div class="col-xl-1 col-1 "></div>
+
+        </div>
+
+      </form>
+      <button (click)="saveTutorial()" type="submit" class="btn btn-primary text-center"
+      style="margin:auto;">Submit</button>
+    </div>
+      <div class="row  " *ngFor="let plan of productInfo; let index=index">
+        {{plan.fullName}}
+      </div>
+
+    </div>
+    <div class="col-2"></div>
+     <!-- <button (click)="saveTutorial()" class="btn btn-success text-center">Submit</button> -->
+  </div>
+  <!-- <div class="row " style="height: 80px;"></div> -->
+</div>

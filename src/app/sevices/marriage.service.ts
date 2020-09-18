@@ -69,4 +69,10 @@ export class MarriageService {
     const url = `/getDetailbyID/${id}`;
     return this.httpClient.get(this.serverUrl + url, { responseType: 'text' as 'json' });
   }
+
+  getsearchInfo(start: any): Observable<any> {
+    const url = `/search/info/${start}`;
+    return this.httpClient.get(this.serverUrl + url);
+  }
+
 }

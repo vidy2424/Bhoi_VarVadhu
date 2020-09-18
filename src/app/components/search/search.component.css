@@ -1,58 +1,79 @@
+.card {
+    box-shadow: 0 4px 8px 0 #dad6d6;
+    transition: 0.3s;
+    /* width: 40%; */
+    opacity: 50;
+  }
+ 
+  .card:hover {
+    box-shadow: 0 11px 11px 0px #b1aeae;
+  }
  
 
-* {
-box-sizing: border-box;
-}
 
-.bg-img {
-/* The image used */
-background-image: url("src\assets\image\b4.jpg")
-;
+  .fontstyle {
+    /* background-color: #9b1503bd; */
+    /* border-radius: 25px; */
+    /* color: #ffffff;
+     
+    line-height: 1.7; */
+     text-align: center;
+    /* max-width: 50%; */
+    /* padding: 2rem 3rem; */
+  }
+  
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    .fontstyle {
+      -webkit-backdrop-filter: blur(0.8px);
+      backdrop-filter: blur(0.8px);
+      background-color: #b7bbbebd;
+    }
+  }
+  
+  
+  .Largescreen {
+    background-image: url("src\assets\img\n11.jpg"); 
+     /* background-position: center; */
+    background-repeat:  no-repeat;
+    background-size: cover;
+     height: 500px;
+     /* margin: 0; */
+    /* display: grid; */
+    /* place-items: center; */
+  }
 
-min-height: 300px;
 
-/* Center and scale the image nicely */
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-position: relative;
-}
+/* for small screen */
+  
+  .smallscreen {
+    background-image: url("src\assets\image\b3.jpg"); 
+     /* background-position: center center; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    margin: 0;
+    /* display: grid; */
+    /* place-items: center; */
+  }
+  .fontsmall {
+    background-color: rgba(29, 236, 10, 0.74);
+    /* border-radius: 25px; */
+    color: #ffffff;
+     line-height: 1.7;
+     text-align: center;
 
-/* Add styles to the form container */
-.container {
-position: absolute;
-right: 0;
-margin: 20px;
-max-width: 300px;
-padding: 16px;
-background-color: white;
-}
+     font-size: 5px;
+     font-size: 3.5vw;
+    /* max-width: 50%; */
+    /* padding: 2rem 3rem; */
+  }
+  
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    .glassy-text {
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      background-color: rgba(89, 79, 128, 0.74);
+    }
+  }
 
-/* Full-width input fields */
-input[type=text], input[type=password] {
-width: 100%;
-padding: 15px;
-margin: 5px 0 22px 0;
-border: none;
-background: #f1f1f1;
-}
-
-input[type=text]:focus, input[type=password]:focus {
-background-color: #ddd;
-outline: none;
-}
-
-/* Set a style for the submit button */
-.btn1 {
-background-color: #4CAF50;
-color: white;
-padding: 16px 20px;
-border: none;
-cursor: pointer;
-width: 100%;
-opacity: 0.9;
-}
-
-.btn:hover {
-opacity: 1;
-}
+ 

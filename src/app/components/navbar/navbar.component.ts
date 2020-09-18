@@ -32,7 +32,9 @@ export class NavbarComponent implements OnInit {
     this.loginService.logoutUser(data)
       .subscribe(result => {
         console.log(result);
-        this.router.navigate(['/login']);
+        this.router.navigate(['/']);
+        window.location.reload();
+
       }, err => {
         alert(err);
       });

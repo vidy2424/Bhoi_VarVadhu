@@ -127,19 +127,7 @@ sanitizeImageUrl(imageName: string): SafeUrl {
   const imageUrl = this.path + imageName + '.jpg';
   return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
 }
-
  
-
-// getmemberInfo(page: any): void {
-//   this.registerServiceService.getmemberInfo(0)
-//       .subscribe(result => {
-//           console.log(result[0]);
-//           this.productInfo = result[0];
- 
-//       }, err => {
-//           alert(err);
-//       })
-// }
 
   addmemberInfo(): void {
     this.configData = {
@@ -165,9 +153,7 @@ sanitizeImageUrl(imageName: string): SafeUrl {
         // alert(err);
       });
   }
-
-
-
+ 
   openModalWithClass(template: TemplateRef<any>, item?: any) {
     this.modalRef = this.modalService.show(
       template,

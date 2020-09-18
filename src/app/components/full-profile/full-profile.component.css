@@ -36,11 +36,15 @@
   }
 
 .icon{
-color: #27a04b;
+color: #da1933;
 }
 
 .titlecolor{
     background-color: crimson;
+}
+
+.tooltip.bottom .tooltip-arrow{
+    border-bottom-color:#F00;
 }
 
   /* #b09492 */

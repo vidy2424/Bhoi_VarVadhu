@@ -14,6 +14,7 @@ import { tokenName } from '@angular/compiler';
 import { RegisterFormService } from 'src/app/formio.service.ts/register-form.service';
 import { RegisterServiceService } from 'src/app/sevices/register-service.service';
 import { MarriageService } from 'src/app/sevices/marriage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidenav',
@@ -61,7 +62,9 @@ export class SidenavComponent implements OnInit {
 
     private sanitizer: DomSanitizer,
     private helperService: HelperService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
+
   ) { }
 
   formIoOptions = {
@@ -94,6 +97,11 @@ export class SidenavComponent implements OnInit {
             alert(err);
         })
   }
+
+  viewLoginuserProfile(userId: any){
+    const url = '/Profile/';
+    this.router.navigate([url, userId]);
+    }
 
   getPath(plan): string {
     const path = this.path + `${plan.code}`;

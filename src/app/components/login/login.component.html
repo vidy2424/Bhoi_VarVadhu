@@ -1,20 +1,33 @@
-<div class="">
-    <app-navbar></app-navbar>
-</div>
-<div class="container-fluid">
+ <div class="container-fluid Largescreen">
     <div class="row " style="height: 80px;"></div>
 <div class="row ">
-    <div class="col-md-4 offset-md-4 mt-4">
+    <div class="col-4 "></div>
+    <div class="col-3 "></div>
+    
+        
+    <div class="col-4 fontstyle mt-4 mb-4">
+        <div class="card button one" style="margin-top: 20px; margin-bottom: 20px; background-color: white; ">
+
+            <div class="card-body">
+
         <formio #notificationForm [form]="formIo.form" [submission]="formIo.submission"  [options]="formIoOptions" 
         (change)="onLoginFormChange($event)" (render) = "onFormLoad(notificationForm)"  (submit)="submitForm($event)"
         ></formio>
+        <app-register></app-register>
+            </div></div>
     </div>
+    
+    
+    
+    <div class="col-1 "></div>
+    
+    <div  class="">
+     
+    </div> 
 </div>
 <div class="row " style="height: 80px;"></div>
 
 </div>
 
 
-<div class="">
-    <app-footer-homepage></app-footer-homepage>
-</div>
+ 

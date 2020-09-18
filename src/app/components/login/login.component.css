@@ -1,0 +1,38 @@
+
+.card {
+	box-shadow: 0 4px 8px 0 #949190;
+	transition: 0.3s;
+  }
+
+
+
+.fontstyle {
+    /* background-color: #9b1503bd; */
+    /* border-radius: 25px; */
+    /* color: #ffffff;
+     
+    line-height: 1.7; */
+     text-align: center;
+    /* max-width: 50%; */
+    /* padding: 2rem 3rem; */
+  }
+  
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    .fontstyle {
+      -webkit-backdrop-filter: blur(0.8px);
+      backdrop-filter: blur(0.8px);
+      background-color: #b7bbbebd;
+    }
+  }
+  
+  
+  .Largescreen {
+    background-image: url("src\assets\img\n2.jpg"); 
+     /* background-position: center; */
+    background-repeat:  no-repeat;
+    background-size: cover;
+     height: 720px;
+     /* margin: 0; */
+    /* display: grid; */
+    /* place-items: center; */
+  }

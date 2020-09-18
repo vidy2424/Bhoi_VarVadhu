@@ -18,6 +18,9 @@ import { BridesComponent } from './components/brides/brides.component';
 import { GroomComponent } from './components/groom/groom.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { FullProfileComponent } from './components/full-profile/full-profile.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { TermAndConditionsComponent } from './components/term-and-conditions/term-and-conditions.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 const routes: Routes = [
@@ -38,6 +41,10 @@ const routes: Routes = [
   { path: 'Groom', component: GroomComponent },
   { path: 'sidenav', component: SidenavComponent },
   { path: 'Profile/:id', component: FullProfileComponent },
+  { path: 'Search', component: SearchComponent },
+  { path: 'Term_And_Conditions', component: TermAndConditionsComponent },
+  { path: 'Searchresults', component: SearchResultsComponent },
+
 ];
 
 @NgModule({

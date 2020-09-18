@@ -1,4 +1,4 @@
-import { Student } from './../interface/student.interface';
+import { Student } from '../interface/student.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -6,29 +6,29 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SearchService {
+export class SearchApiService {
 
   constructor(private httpClient: HttpClient) { }
 
   serverUrl = 'http://localhost:8083/onlineshopping';
 
 
-  ClientProducts(data: Student): Observable<any> {
-    const url = '/clientProducts';
-    return this.httpClient.post(this.serverUrl + url, data);
+  SearchData1(data): Observable<any> {
+    const url = '/Search';
+    const formData: FormData = new FormData();
+    formData.append('data', JSON.stringify(data));
+
+    return this.httpClient.post(this.serverUrl + url, formData);
   }
 
   
 
-Search(data): Observable<HttpEvent<any>> {
+  SearchData(data): Observable<HttpEvent<any>> {
   const formData: FormData = new FormData();
-  const formSubmissiomData = {
-      
-  };
-  formData.append('data', JSON.stringify(data.data));
-  formData.append('file', data.files);
-
-  const req = new HttpRequest('POST', `${this.serverUrl}/clientproduct`, formData, {
+  
+  formData.append('data', JSON.stringify(data));
+  
+  const req = new HttpRequest('POST', `${this.serverUrl}/Search`, formData, {
    //   headers: headers.set('Content-Type', 'multipart/form-data'),
       // reportProgress: true,
       //  responseType: 'json'

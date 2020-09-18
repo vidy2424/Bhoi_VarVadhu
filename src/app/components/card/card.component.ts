@@ -131,6 +131,8 @@ export class CardComponent implements OnInit {
     this.formIo.form = this.webInfoService.getForm();
   }
 
+
+  
   submitForm(event: any): void {
     console.log(event);
     this.webInfoService.submitForm(event.data, () => {

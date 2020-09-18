@@ -46,6 +46,8 @@ import { RelatedCardsComponent } from './components/related-cards/related-cards.
 import { SimilarProfilesComponent } from './components/similar-profiles/similar-profiles.component';
 import { HappyMarraigeSliderComponent } from './components/happy-marraige-slider/happy-marraige-slider.component';
 import { FooterHomepageComponent } from './components/footer-homepage/footer-homepage.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { TermAndConditionsComponent } from './components/term-and-conditions/term-and-conditions.component';
    
  // import { initProviderFactory } from './sevices/init-app-provider.factory';
 
@@ -80,7 +82,9 @@ import { FooterHomepageComponent } from './components/footer-homepage/footer-hom
     RelatedCardsComponent,
     SimilarProfilesComponent,
     HappyMarraigeSliderComponent,
-    FooterHomepageComponent
+    FooterHomepageComponent,
+    SearchResultsComponent,
+    TermAndConditionsComponent
   ],
   imports: [
     BrowserModule,
