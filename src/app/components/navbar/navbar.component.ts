@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.isLoggedin = this.helperService.token ? true : false;
     this.userinfo(tokenName);
+ 
   }
 
   logOut(): void {
@@ -33,11 +34,12 @@ export class NavbarComponent implements OnInit {
       .subscribe(result => {
         console.log(result);
         this.router.navigate(['/']);
-        window.location.reload();
-
+       
       }, err => {
         alert(err);
       });
+      // window.location.reload();
+
   }
 
   userinfo(token) {
@@ -46,7 +48,7 @@ export class NavbarComponent implements OnInit {
         this.helperService.userData = result;
         this. loginUserInfo = result;
     }, err => {
-        alert(err);
+        //alert(err);
     });
 }
 

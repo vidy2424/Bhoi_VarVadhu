@@ -21,13 +21,15 @@ import { FullProfileComponent } from './components/full-profile/full-profile.com
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { TermAndConditionsComponent } from './components/term-and-conditions/term-and-conditions.component';
 import { SearchComponent } from './components/search/search.component';
+import { AdminPanalComponent } from './components/admin-panal/admin-panal.component';
+import { AdminSearchComponent } from './components/admin-search/admin-search.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
+  { path: '', component: LoginComponent },
   { path: 'save', component: StudentViewComponent },
   { path: 'card', component: CardComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'Home', component: HomePageComponent },
   { path: 'Signup', component: SignupComponent },
   { path: 'info', component: WebInfoComponent },
   { path: 'services', component: ServicesComponent },
@@ -44,7 +46,8 @@ const routes: Routes = [
   { path: 'Search', component: SearchComponent },
   { path: 'Term_And_Conditions', component: TermAndConditionsComponent },
   { path: 'Searchresults', component: SearchResultsComponent },
-
+  { path: 'AdminPanal', component:  AdminPanalComponent },
+  { path: 'AdminSearch', component:  AdminSearchComponent }
 ];
 
 @NgModule({

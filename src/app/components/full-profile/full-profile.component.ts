@@ -93,8 +93,10 @@ export class FullProfileComponent implements OnInit {
   onFormLoad(): void {
 
   }
-
+  isLoggedin: boolean;
   ngOnInit() {
+    this.isLoggedin = this.helperService.token ? true : false;
+
     this.isAdmin = this.helperService.userData['role'] === 'ADMIN' ? true : false;
     this.getbrideInfo(1);
     // this.isAdmin = this.userinfo['role'] === 'ADMIN' ? true : false;
@@ -104,13 +106,7 @@ export class FullProfileComponent implements OnInit {
     // }, err => {
     //   console.log(err);
     // });
-
-    // this.route.params.subscribe(param => {
-    //   this.viewBrideById(param.id);
-    // }, err => {
-    //   console.log(err);
-    // });
-
+    
     this.route.params.subscribe(param => {
       this.viewAllById(param.id);
     }, err => {
@@ -284,25 +280,25 @@ export class FullProfileComponent implements OnInit {
   }
 
 
-  // sroll button
-  @HostListener("window:scroll", [])
-  onWindowScroll() {
-    if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
-      this.windowScrolled = true;
-    }
-    else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
-      this.windowScrolled = false;
-    }
-  }
-  scrollToTop() {
-    (function smoothscroll() {
-      var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-      if (currentScroll > 0) {
-        window.requestAnimationFrame(smoothscroll);
-        window.scrollTo(0, currentScroll - (currentScroll / 8));
-      }
-    })();
-  }
+   // sroll button
+   @HostListener ("window:scroll", [])
+   onWindowScroll() {
+       if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
+           this.windowScrolled = true;
+       } 
+      else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
+           this.windowScrolled = false;
+       }
+   }
+   scrollToTop() {
+       (function smoothscroll() {
+           var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+           if (currentScroll > 0) {
+               window.requestAnimationFrame(smoothscroll);
+               window.scrollTo(0, currentScroll - (currentScroll / 8));
+           }
+       })();
+   }
 
   setPreviousAndNextPage(pagetype: any): void {
     if (pagetype === 'Previous') {

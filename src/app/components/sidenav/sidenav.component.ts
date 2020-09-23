@@ -132,7 +132,7 @@ sanitizeImageUrl(imageName: string): SafeUrl {
       .subscribe(result => {
         this.helperService.userData = result;
         this.isAdmin = result['role'] === 'ADMIN' ? true : false;
-        this. loginUserInfo = result;
+        this.loginUserInfo = result;
 
       }, err => {
         // alert(err);

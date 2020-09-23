@@ -42,7 +42,7 @@ export class HomePageComponent implements OnInit {
         this.helperService.userData = result;
         this. loginUserInfo = result;
     }, err => {
-        alert(err);
+       // alert(err);
     });
 }
 

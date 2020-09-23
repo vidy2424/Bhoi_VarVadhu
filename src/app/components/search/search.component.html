@@ -14,7 +14,7 @@
     <div class="col-10 mt-4  ">
       <div class="   ">
         <form>
-          <div class="row fontstyle " style="margin-top: 300px;">
+          <div class="row fontstyle" style="margin-top: 300px;">
             <!-- <div class="col-xl-1 col-1 mt-4"></div> -->
 
             <div class="col-xl-2 col-lg-2 col-12  form-group form-group-inline ">
@@ -24,10 +24,10 @@
                 <option value=bride>Bride</option>
               </select>
             </div>
-            <div class="col-xl-2 col-lg-2 col-6   form-group form-group-inline ">
+            <div class="col-xl-2 col-lg-2 col-6 form-group form-group-inline ">
               <label for="exampleFormControlSelect1">Age</label>
               <select class="form-control" id="ageFrom" required [(ngModel)]="searchdata.ageFrom" name="title">
-                <option value="" selected>From</option>
+                <option value=""   selected>From</option>
                 <option>18</option>
                 <option>19</option>
                 <option>20</option>
@@ -146,7 +146,7 @@
               </select>
             </div>
             <div class="col-xl-2 col-lg-2 col-1  ">
-              <button (click)="saveTutorial()" type="submit" class="btn btn-primary text-center mt-4"
+              <button (click)="search()" type="submit" class="btn btn-primary text-center mt-4"
               style="margin:auto;">Submit</button>
             </div>
 
@@ -194,7 +194,7 @@
             </div>
             <div class="col-xl-2 col-6   form-group form-group-inline ">
               <label for="exampleFormControlSelect1">Age</label>
-              <select class="form-control" id="ageFrom" required [(ngModel)]="searchdata.ageFrom" name="title">
+              <select class="form-control" id="ageFrom" style="max-height: 40px;" required [(ngModel)]="searchdata.ageFrom" name="title">
                 <option value="" selected>From</option>
                 <option>18</option>
                 <option>19</option>
@@ -305,7 +305,7 @@
 
               </select>
             </div>
-               <button (click)="saveTutorial()" type="submit" class="btn btn-primary mb-2 text-center"
+               <button (click)="saveTutorial()" type="submit" class="btn btn-success mb-2 text-center"
               style="margin: auto;">Submit</button>
              
           
@@ -340,7 +340,7 @@
               <div class="col-12 col-xl-4 col-sm-12 ">
 
                 <img [src]="sanitizeImageUrl(plan.code)" class="mb-3" alt="image slide"
-                  style="display: block; margin: auto; width: 60%; height: 200px">
+                  style="display: block; margin: auto; width: 60%; height: 200px; border-radius: 10px; ">
 
               </div>
               <div class="col-12 col-xl-4 col-sm-12">
@@ -477,7 +477,7 @@
 <div class="row ">
   <div class="col-xl-1"></div>
   <div class="col-xl-12">
-      <app-related-cards></app-related-cards>
+    <app-recently-added-member></app-recently-added-member>
   </div>
   <div class="col-xl-1"></div>
 

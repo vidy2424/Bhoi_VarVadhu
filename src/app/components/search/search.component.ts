@@ -57,7 +57,7 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.saveTutorial(1);
+    this.search(1);
   }
 
   sanitizeImageUrl(imageName: string): SafeUrl {
@@ -66,7 +66,7 @@ export class SearchComponent implements OnInit {
   }
   
 
-  saveTutorial(any) {
+  search(any) {
     const data = {
       groom_Bride: this.searchdata.groom_Bride,
       ageFrom: this.searchdata.ageFrom,
@@ -74,8 +74,6 @@ export class SearchComponent implements OnInit {
       city: this.searchdata.city,
       education: this.searchdata.education,
       page: this.pagination.page.toString()
-
-
     };
 
 
@@ -98,10 +96,10 @@ export class SearchComponent implements OnInit {
 
   setPreviousAndNextPage(pagetype: any): void {
     if (pagetype === 'Previous') {
-      this.saveTutorial(this.pagination.page - 1);
+      this.search(this.pagination.page - 1);
       this.pagination.page = this.pagination.page - 1;
     } else if (pagetype === 'Next') {
-      this.saveTutorial(this.pagination.page + 1);
+      this.search(this.pagination.page + 1);
       this.pagination.page = this.pagination.page + 1;
     }
     this.removeActivePage(this.pagination.previousPage);
@@ -119,7 +117,7 @@ export class SearchComponent implements OnInit {
 
   changePage(page: number): void {
     this.pagination.page = page;
-    this.saveTutorial(page);
+    this.search(page);
     this.removeActivePage(this.pagination.previousPage);
     this.setActivePage(page);
     this.pagination.previousPage = page;

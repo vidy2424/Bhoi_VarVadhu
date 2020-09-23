@@ -5,7 +5,7 @@
     <app-sidenav></app-sidenav>
 </div> -->
 
-<div class="container-fluid ">
+<div *ngIf='isLoggedin' class="container-fluid ">
 
     <ng-template #template>
         <div class="modal-header">
@@ -81,7 +81,7 @@
                                         {{singleMemberInfo.occupation}}
                                     </div>
                                     <div class="col-xl-2 col-2  ">
-                                        <i class="fa fa-inr ml-1 mt-3 mb-3" title='Annual Income'
+                                        <i class="fa fa-inr icon ml-1 mt-3 mb-3" title='Annual Income'
                                             style="font-size: 18px; " aria-hidden="true">
                                         </i>
                                     </div>
@@ -89,7 +89,7 @@
                                         {{singleMemberInfo.annual_Income}}
                                     </div>
                                     <div class="col-xl-2 col-2  ">
-                                        <i class="fa fa-map-marker ml-1 mt-3 mb-3" title='City' style="font-size: 18px; "
+                                        <i class="fa fa-map-marker icon ml-1 mt-3 mb-3" title='City' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -105,7 +105,7 @@
                                     <div class="col-12 " style="height: 32px;"></div>
 
                                     <div class="col-xl-2 col-2  ">
-                                        <i class="fa fa-square ml-1 mt-3 mb-3" title='Caste' style="font-size: 18px; "
+                                        <i class="fa fa-square icon ml-1 mt-3 mb-3" title='Caste' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -113,7 +113,7 @@
                                         {{singleMemberInfo.caste}}
                                     </div>
                                     <div class="col-xl-2 col-2  ">
-                                        <i class="fa fa-male ml-1 mt-3 mb-3" title='Height' style="font-size: 20px; "
+                                        <i class="fa fa-male icon ml-1 mt-3 mb-3" title='Height' style="font-size: 20px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -121,14 +121,14 @@
                                         {{singleMemberInfo.height}}
                                     </div>
                                     <div class="col-xl-2 col-2  ">
-                                        <i class="fa fa-male ml-1 mt-3 mb-3" title='Weight' style="font-size: 18px; ">
+                                        <i class="fa fa-male icon ml-1 mt-3 mb-3" title='Weight' style="font-size: 18px; ">
                                         </i>
                                     </div>
                                     <div class="col-xl-10 col-4 font mt-3 mb-3 ">
                                         {{singleMemberInfo.weight}}
                                     </div>
                                     <div class="col-xl-2 col-2  ">
-                                        <i class="fa fa-medkit ml-1 mt-3 mb-3" title='Blood Group' style="font-size: 18px; "
+                                        <i class="fa fa-medkit icon ml-1 mt-3 mb-3" title='Blood Group' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -143,11 +143,11 @@
                         <div class="row">
                             <div *ngIf='isAdmin' class="col-6 mt-3 mb-3 text-center">
                                 <a href="javascript:void(0)" (click)="editmemberInfo(plan)"
-                                    class="btn btn-outline-primary" style=" ">Edit</a>
+                                    class="btn btn-outline-success" style=" ">Edit</a>
                             </div>
                             <div *ngIf='isAdmin' class="col-6 mt-3 mb-3 text-center">
                                 <a href="javascript:void(0)" (click)="deletememberInfo(plan)"
-                                    class="btn btn-outline-primary">Delete</a>
+                                    class="btn btn-outline-success">Delete</a>
                             </div>
                         </div>
                     </div>
@@ -183,7 +183,7 @@
                             <div class="col-12">
                                 <div class="row    ">
                                     <div class="col-xl-1 ">
-                                        <i class="fa fa-user text-center ml-2 mt-4 mb-3" title='Info' style="font-size: 18px; "
+                                        <i class="fa fa-user icon text-center ml-2 mt-4 mb-3" title='Info' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -202,7 +202,7 @@
                                 <div class=" row ">
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-male ml-2 mt-3 mb-3" title='Height' style="font-size: 18px; "
+                                        <i class="fa fa-male icon ml-2 mt-3 mb-3" title='Height' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -211,7 +211,7 @@
                                         Height is {{singleMemberInfo.height}}
                                     </div>
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-male  ml-2 mt-3 mb-3" title='Weight' style="font-size: 18px; "
+                                        <i class="fa fa-male icon ml-2 mt-3 mb-3" title='Weight' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -220,7 +220,7 @@
                                         Weight is {{singleMemberInfo.weight}}
                                     </div>
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-circle-o-notch ml-2 mt-3 mb-3" title='Marital Status' style="font-size: 18px; "
+                                        <i class="fa fa-circle-o-notch icon ml-2 mt-3 mb-3" title='Marital Status' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -229,7 +229,7 @@
                                         {{singleMemberInfo.marital_Status}}
                                     </div>
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-map-marker ml-2 mt-3 mb-3" title='city' style="font-size: 18px; "
+                                        <i class="fa fa-map-marker icon ml-2 mt-3 mb-3" title='city' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -245,7 +245,7 @@
                                 <div class=" row ">
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-male ml-2 mt-3 mb-3" title='Blood Group' style="font-size: 18px; "
+                                        <i class="fa fa-male icon ml-2 mt-3 mb-3" title='Blood Group' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -254,7 +254,7 @@
                                         Blood Group is {{singleMemberInfo.blood_Group}}
                                     </div>
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-male ml-2 mt-3 mb-3" title='Zodiac Sign' style="font-size: 18px; "
+                                        <i class="fa fa-male icon ml-2 mt-3 mb-3" title='Zodiac Sign' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -277,7 +277,7 @@
                                 <div class=" row ">
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-graduation-cap ml-2 mt-3 mb-3" title='Education' style="font-size: 18px; "
+                                        <i class="fa fa-graduation-cap icon ml-2 mt-3 mb-3" title='Education' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -286,7 +286,7 @@
                                         {{singleMemberInfo.education}}
                                     </div>
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-briefcase  ml-2 mt-3 mb-3" title='occupation' style="font-size: 18px; "
+                                        <i class="fa fa-briefcase icon ml-2 mt-3 mb-3" title='occupation' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -301,7 +301,7 @@
                                 <div class=" row ">
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-inr ml-2 mt-3 mb-3" title='Annual Income' style="font-size: 18px; "
+                                        <i class="fa fa-inr icon ml-2 mt-3 mb-3" title='Annual Income' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -324,7 +324,7 @@
                                 <div class=" row ">
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-square ml-2 mt-3 mb-3" title='Caste' style="font-size: 18px; "
+                                        <i class="fa fa-square icon ml-2 mt-3 mb-3" title='Caste' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -333,7 +333,7 @@
                                         {{singleMemberInfo.caste}}
                                     </div>
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-star  ml-2 mt-3 mb-3" title='Nakshatras' style="font-size: 18px; "
+                                        <i class="fa fa-star icon ml-2 mt-3 mb-3" title='Nakshatras' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -343,7 +343,7 @@
                                     </div>
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-circle-o  ml-2 mt-3 mb-3" title='Mangal' style="font-size: 18px; "
+                                        <i class="fa fa-circle-o icon ml-2 mt-3 mb-3" title='Mangal' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -359,7 +359,7 @@
                                 <div class=" row ">
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-superpowers ml-2 mt-3 mb-3" title='Zodiac Sign' style="font-size: 18px; "
+                                        <i class="fa fa-superpowers icon ml-2 mt-3 mb-3" title='Zodiac Sign' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -369,7 +369,7 @@
                                     </div>
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fa fa-circle-o ml-2 mt-3 mb-3" title='Nadi' style="font-size: 18px; "
+                                        <i class="fa fa-circle-o icon ml-2 mt-3 mb-3" title='Nadi' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -393,7 +393,7 @@
                                 <div class=" row ">
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fas fa-users ml-2 mt-3 mb-3" title='Caste' style="font-size: 18px; "
+                                        <i class="fas fa-users icon ml-2 mt-3 mb-3" title='Caste' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -402,7 +402,7 @@
                                         {{singleMemberInfo.caste}}
                                     </div>
                                     <div class="col-xl-2 col-2">
-                                        <i class="fas fa-male  ml-2 mt-3 mb-3" title='Brother' style="font-size: 18px; "
+                                        <i class="fas fa-male icon ml-2 mt-3 mb-3" title='Brother' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -412,7 +412,7 @@
                                     </div>
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fas fa-male  ml-2 mt-3 mb-3" title='Married Brother' style="font-size: 18px; "
+                                        <i class="fas fa-male icon ml-2 mt-3 mb-3" title='Married Brother' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -428,7 +428,7 @@
                                 <div class=" row ">
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fas fa-female ml-2 mt-3 mb-3" title='Sister' style="font-size: 18px; "
+                                        <i class="fas fa-female icon ml-2 mt-3 mb-3" title='Sister' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -438,7 +438,7 @@
                                     </div>
 
                                     <div class="col-xl-2 col-2">
-                                        <i class="fas fa-female ml-2 mt-3 mb-3" title='Married Sister' style="font-size: 18px; "
+                                        <i class="fas fa-female icon ml-2 mt-3 mb-3" title='Married Sister' style="font-size: 18px; "
                                             aria-hidden="true">
                                         </i>
                                     </div>
@@ -490,7 +490,8 @@
     <div class="row ">
         <div class="col-xl-1"></div>
         <div class="col-xl-10">
-            <app-related-cards></app-related-cards>
+            <app-recently-added-member></app-recently-added-member>
+
         </div>
         <div class="col-xl-1"></div>
 
@@ -500,3 +501,5 @@
 <div class="">
     <app-footer-homepage></app-footer-homepage>
 </div>
+
+ 

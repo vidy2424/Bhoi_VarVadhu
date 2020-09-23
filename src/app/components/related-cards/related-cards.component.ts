@@ -38,7 +38,7 @@ export class RelatedCardsComponent implements OnInit {
 
   url: string = 'student';
   usersList: Array<Student>;
-  productInfo = [];
+  relatedcardInfo = [];
   configData = {};
   formName = 'Create Plan';
   isAdmin = false;
@@ -53,6 +53,8 @@ export class RelatedCardsComponent implements OnInit {
 
   singleSlideOffset = true;
   noWrap = true;
+  city = [];
+
 
   constructor(
 
@@ -81,10 +83,13 @@ export class RelatedCardsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isAdmin = this.helperService.userData['role'] === 'ADMIN' ? true : false;
-    this.getmemberInfo(0);
-    // this.isAdmin = this.userinfo['role'] === 'ADMIN' ? true : false;
     this.userinfo(tokenName);
+    this.isAdmin = this.helperService.userData['role'] === 'ADMIN' ? true : false;
+    //this.getmemberInfo(0);
+    this.getGroomByCity();
+    
+    // this.isAdmin = this.userinfo['role'] === 'ADMIN' ? true : false;
+    
     this.router;
 
   }
@@ -110,10 +115,23 @@ getmemberInfo(start: any): void {
   this.registerServiceService.getmemberInfo(0)
       .subscribe(result => {
           console.log(result[0]);
-          this.productInfo = result[0];
+          this.relatedcardInfo = result[0];
       }, err => {
           alert(err);
       })
+}
+
+getGroomByCity(): void {
+   this.registerServiceService.getGroomByCity()
+      .subscribe(result => {
+        console.log(result);
+        this.relatedcardInfo = result;
+        _.remove(this.relatedcardInfo, item => {
+          return item.id === this.helperService.userData['id'];
+        });
+      }, err => {
+          alert(err);
+      });
 }
 
   addmemberInfo(): void {
@@ -124,11 +142,15 @@ getmemberInfo(start: any): void {
   }
 
   userinfo(token) {
+ 
     this.loginService.getuserInfo()
       .subscribe(result => {
-        this.helperService.userData = result;
-        this.isAdmin = result['role'] === 'ADMIN' ? true : false;
+        this.helperService.userData['city'] = result;
 
+        this.isAdmin = result['role'] === 'ADMIN' ? true : false;
+        //this.loginUserInfo = result;
+        this.city = result['city'];
+        console.log('result', this.city);
       }, err => {
         // alert(err);
       });

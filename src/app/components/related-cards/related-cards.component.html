@@ -44,17 +44,17 @@
                 <h1 class="text-center mt-4 fontawsm" style="color: #fa7a75; ">Matching Profiles</h1>
                 <div class="card-body">
                          <carousel class="carosel col-sm-12" [itemsPerSlide]="5" [singleSlideOffset]="singleSlideOffset"
-                            [interval]=5000 [noWrap]="noWrap" [showIndicators]="false">
-                            <slide *ngFor="let plan of productInfo; let index=index" class="mx-auto fade3">
+                            [interval]=3000 [noWrap]="noWrap" [showIndicators]="false">
+                            <slide *ngFor="let plan of relatedcardInfo; let index=index" class="mx-auto fade3">
                                 <div class="col-12 p-1  mt-4 mb-4">
-                                    <div class="card cardhover p-0 ml-2 mr-2" style="width: auto; ">
-                                        <img [src]="sanitizeImageUrl(plan.code)" alt="image slide"
+                                    <div class="card cardhover p-0 ml-2 mr-2" style="width: auto; border-radius: 20px; ">
+                                        <img [src]="sanitizeImageUrl(plan.code)" class="borderradius" alt="image slide"
                                             style="display: block; width: 100%; height: 200px">
                                         <div class="card-body mt-2 mb-2">
                                             <h5 class="card-title text-center fontawsm">{{plan.fullName}}</h5>
                                         </div>
                                         <div class="text-center mt-2 mb-2">
-                                            <button type="button" class="btn btn-outline-success fontawsm" (click)="viewbyID(plan.id)">Info</button>
+                                            <button type="button" class="btn btn-outline-success fontawsm" (click)="viewbyID(plan.id)">Profile</button>
                                         </div>
                                     </div>
                                 </div>

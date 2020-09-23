@@ -20,8 +20,7 @@ export class RegisterServiceService {
 
   editmemberInfo(data,file, id:any): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
-    const formSubmissiomData = {
-        
+    const formSubmissiomData = {        
     };
     formData.append('data', JSON.stringify(data));
     formData.append('file', file);
@@ -58,6 +57,16 @@ upload(data): Observable<HttpEvent<any>> {
   deletememberInfo(id: any): Observable<any> {
     const url = `/memberDelete/${id}`;
     return this.httpClient.delete(this.serverUrl + url, { responseType: 'text' as 'json' });
+}
+
+getGroomByCity(): Observable<any> {
+  const url = `/groom/city`;
+  return this.httpClient.get(this.serverUrl + url);
+}
+
+getRecentlyadded(): Observable<any> {
+  const url = `/Recentlyadded`;
+  return this.httpClient.get(this.serverUrl + url);
 }
 
 }

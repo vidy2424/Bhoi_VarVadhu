@@ -48,7 +48,13 @@ import { HappyMarraigeSliderComponent } from './components/happy-marraige-slider
 import { FooterHomepageComponent } from './components/footer-homepage/footer-homepage.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { TermAndConditionsComponent } from './components/term-and-conditions/term-and-conditions.component';
-   
+import { LoginPageNavbarComponent } from './login-page-navbar/login-page-navbar.component';
+import { RecentlyAddedMemberComponent } from './components/recently-added-member/recently-added-member.component';
+import { SuccessStoriesComponent } from './components/success-stories/success-stories.component';
+import { AdminPanalComponent } from './components/admin-panal/admin-panal.component';
+import { AdminSearchComponent } from './components/admin-search/admin-search.component';
+import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
+ 
  // import { initProviderFactory } from './sevices/init-app-provider.factory';
 
 @NgModule({
@@ -84,7 +90,13 @@ import { TermAndConditionsComponent } from './components/term-and-conditions/ter
     HappyMarraigeSliderComponent,
     FooterHomepageComponent,
     SearchResultsComponent,
-    TermAndConditionsComponent
+    TermAndConditionsComponent,
+    LoginPageNavbarComponent,
+    RecentlyAddedMemberComponent,
+    SuccessStoriesComponent,
+    AdminPanalComponent,
+    AdminSearchComponent,
+    AdminNavComponent
   ],
   imports: [
     BrowserModule,

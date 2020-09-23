@@ -1,18 +1,20 @@
-<div class="container-fluid p-0" style="background-color: #d7eefa;">
+<div class="container-fluid p-0" style="">
     <div *ngIf='isLoggedin' class="">
         <app-navbar></app-navbar>
     </div>
-    <div *ngIf='isLoggedin' class="">
+    <div *ngIf='isLoggedin' class="mt-4">
         <app-slider></app-slider>
     </div>
- 
-    <div *ngIf='!isLoggedin' class="">
-        <app-login></app-login>
-    </div>
- 
+
     <div *ngIf='isLoggedin' class="">
-        <app-footer></app-footer>
+        <app-recently-added-member></app-recently-added-member>
     </div>
 
+    <div *ngIf='isLoggedin' class="">
+        <app-recently-added-member></app-recently-added-member>
+    </div>
      
+    <div *ngIf='isLoggedin' class="">
+        <app-footer-homepage></app-footer-homepage>
+    </div>
     </div>

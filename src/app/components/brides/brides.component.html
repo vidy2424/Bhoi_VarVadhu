@@ -51,7 +51,7 @@
                             <div class="col-12 col-xl-4 col-sm-12 ">
 
                                 <img [src]="sanitizeImageUrl(plan.code)" class="mb-3" alt="image slide"
-                                    style="display: block; margin: auto; width: 60%; height: 200px">
+                                    style="display: block; margin: auto; width: 60%; height: 200px; border-radius: 10px; ">
 
                             </div>
                             <div class="col-12 col-xl-4 col-sm-12">
@@ -185,11 +185,7 @@
     </div>
 </div>
 
-    <!-- sroll to top button -->
-    <div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
-        <i class="fa fa-arrow-circle-up" (click)="scrollToTop()" style="font-size: 40px;color:dodgerblue ;"
-            aria-hidden="true"></i>
-    </div>
+
 
     <div class="row " style="height: 80px;"></div>
 
@@ -199,3 +195,9 @@
 <div class="">
     <app-footer></app-footer>
 </div>
+
+    <!-- sroll to top button -->
+    <div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
+        <i class="fa fa-arrow-circle-up" (click)="scrollToTop()" style="font-size: 40px;color:#ec2d13 ;"
+            aria-hidden="true"></i>
+    </div>

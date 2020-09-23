@@ -87,7 +87,7 @@ export class LoginFormService {
                 this.userinfo(result);
  
             }, err => {
-                alert(err);
+                //alert(err);
             });
     }
 
@@ -95,11 +95,10 @@ export class LoginFormService {
         this.loginService.getuserInfo()
             .subscribe(result => {
                 this.helperService.userData = result;
-                this.router.navigate(['/home']);
-                window.location.reload();
-
+                this.router.navigate(['/Home']);
+            
             }, err => {
-                alert(err);
+               // alert(err);
             });
     }
 

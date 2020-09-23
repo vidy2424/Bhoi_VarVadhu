@@ -1,0 +1,170 @@
+<div class="">
+    <app-navbar></app-navbar>
+</div>
+<!-- <div class="">
+    <app-sidenav></app-sidenav>
+</div> -->
+
+<div class="">
+    <app-admin-nav></app-admin-nav>
+</div>
+
+<div class="container-fluid ">
+
+    <ng-template #template>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">{{formName}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body col-12" style="">
+            <div>
+                <formio #notificationForm [form]="formIo.form" [submission]="formIo.submission"
+                    [options]="formIoOptions" (change)="onSignUpFormChange($event)"
+                    (render)="onFormLoad(notificationForm)" (submit)="submitForm($event)">
+                </formio>
+                <label class="btn btn-default">
+                    <input type="file" (change)="selectFile($event)" />
+                </label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="modalRef.hide()">close</button>
+            <button type="button" class="btn btn-secondary" (click)="upload()" (click)="modalRef.hide()"
+                data-dismiss="modal">Submit</button>
+        </div>
+        <!-- [disabled]="!submissionData" -->
+    </ng-template>
+
+    <!-- <div class="row border border-primary" style="height: 80px;"></div> -->
+
+    <!-- <div class="row">
+        <div class="col-4">
+            <div *ngIf='isAdmin' class="col-4 border border-primary mt-1">
+                <a routerLink="/AdminSearch" class="btn btn-outline-primary" style="">Search</a>
+            </div>
+
+           
+        </div>
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+    </div> -->
+
+
+
+    <div class="row border border-primary ">
+        <!--  -->
+        <!-- <div class="col-xl-2"></div> -->
+        <div class="col-xl-3" *ngFor="let plan of productInfo; let index=index">
+
+            <div class="card button one border border-prximary" style="margin-top: 10px; border-radius: 20px; ">
+
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-4">
+                            <img [src]="sanitizeImageUrl(plan.code)" class="img-circle" alt="image slide"
+                                style="display: block; margin: auto; width: 80%; height: 60px; border-radius: 50%; ">
+
+                        </div>
+                        <div class="col-8">
+                            <h2 class="card-title text-center" style="font-size: 20px;   ">
+                                {{plan.fullName}}</h2>
+                            <div class=" font text-center" style=" font-size: 14px; font-weight: bold;">
+                                {{plan.contact_No_1}}
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row border border-danger">
+                        <!-- <div class="col-12 col-xl-1 col-sm-12  "></div> -->
+                        <div class="col-xl-2 col-2 border border-primary">
+                            <i class="fas fa-envelope ml-1 mt-3  " style="font-size: 18px; " aria-hidden="true">
+                            </i>
+                        </div>
+                        <div class="col-xl-10 col-4 font mt-2  border border-primary" style="">
+                            {{plan.email}}
+                        </div>
+                        <div class="col-xl-2 col-2">
+                            <i class="fas fa-key ml-2 mt-1" style="font-size: 18px; " aria-hidden="true">
+                            </i>
+                        </div>
+                        <div class="col-xl-10 col-4 font mt-1" style="">
+                            {{plan.city}}
+                        </div>
+                        <div class="col-xl-2 col-2  ">
+                            <i class="fa fa-map-marker ml-2 mt-1 " style="font-size: 18px; " aria-hidden="true">
+                            </i>
+                        </div>
+                        <div class="col-xl-10 col-4 font mt-1" style="">
+                            {{plan.city}}
+                        </div>
+                    </div>
+
+                    <div class="row border border-primary">
+                        <div *ngIf='isAdmin' class="col-4 border border-primary mt-1">
+                            <a href="javascript:void(0)" (click)="editmemberInfo(plan)" class="btn btn-outline-primary"
+                                style=" ">Edit</a>
+                        </div>
+
+                        <div *ngIf='isAdmin' class="col-4 border border-primary mt-1">
+                            <a href="javascript:void(0)" (click)="viewBride(plan.id)" class="btn btn-outline-primary"
+                                style="">Profile</a>
+                        </div>
+
+                        <div *ngIf='isAdmin' class="col-4 border border-primary mt-1">
+                            <a href="javascript:void(0)" (click)="deletememberInfo(plan)"
+                                class="btn btn-outline-primary" style="">Delete</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
+        <!-- <div class="col-xl-1 "></div> -->
+    </div>
+    <div class="row mt-4">
+        <div class="col-2"></div>
+        <div *ngIf="pagination.total > 1" class="col-10 mt-4">
+            <div class="col-md-4 offset-md-4">
+                <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                    <ul class="pagination">
+                        <li class="page-item" [ngClass]="pagination.page === 1 ? 'disabled' : ''">
+                            <a class="page-link" href="javascript:void(0)" (click)="setPreviousAndNextPage('Previous')"
+                                aria-label="Previous" click>
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <div *ngFor="let page of counter(pagination.total); let index=index">
+                            <li class="page-item" [ngClass]="page === 1 ? 'active' : ''" id="{{getId(page)}}"><a
+                                    class="page-link" href="javascript:void(0)" (click)="changePage(page)">{{page}}</a>
+                            </li>
+                        </div>
+                        <li class="page-item" [ngClass]="pagination.page === pagination.total ? 'disabled' : ''">
+                            <a class="page-link" href="javascript:void(0)" (click)="setPreviousAndNextPage('Next')"
+                                aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="row " style="height: 80px;"></div>
+
+</div>
+
+
+<div class="">
+    <app-footer></app-footer>
+</div>
+
+<!-- sroll to top button -->
+<div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
+    <i class="fa fa-arrow-circle-up" (click)="scrollToTop()" style="font-size: 40px;color:#ec2d13 ;"
+        aria-hidden="true"></i>
+</div>
