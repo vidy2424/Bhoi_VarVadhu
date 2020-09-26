@@ -26,4 +26,19 @@ const req = new HttpRequest('POST', `${this.serverUrl}/SearchDataByCity`, formDa
 
 return this.httpClient.request(req);
 }
+
+CountClicks(data): Observable<HttpEvent<any>> {
+  const formData: FormData = new FormData();
+  
+  formData.append('data', JSON.stringify(data));
+  
+  const req = new HttpRequest('POST', `${this.serverUrl}/clickCounts`, formData, {
+   //   headers: headers.set('Content-Type', 'multipart/form-data'),
+      // reportProgress: true,
+      //  responseType: 'json'
+  });
+  
+  return this.httpClient.request(req);
+  }
+
 }

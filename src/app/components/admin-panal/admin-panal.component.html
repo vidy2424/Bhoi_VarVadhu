@@ -37,11 +37,11 @@
         <!-- [disabled]="!submissionData" -->
     </ng-template>
 
-    <!-- <div class="row border border-primary" style="height: 80px;"></div> -->
+    <!-- <div class="row " style="height: 80px;"></div> -->
 
     <!-- <div class="row">
         <div class="col-4">
-            <div *ngIf='isAdmin' class="col-4 border border-primary mt-1">
+            <div *ngIf='isAdmin' class="col-4 mt-1">
                 <a routerLink="/AdminSearch" class="btn btn-outline-primary" style="">Search</a>
             </div>
 
@@ -53,7 +53,7 @@
 
 
 
-    <div class="row border border-primary ">
+    <div class="row ">
         <!--  -->
         <!-- <div class="col-xl-2"></div> -->
         <div class="col-xl-3" *ngFor="let plan of productInfo; let index=index">
@@ -76,13 +76,13 @@
 
                         </div>
                     </div>
-                    <div class="row border border-danger">
+                    <div class="row ">
                         <!-- <div class="col-12 col-xl-1 col-sm-12  "></div> -->
-                        <div class="col-xl-2 col-2 border border-primary">
+                        <div class="col-xl-2 col-2 ">
                             <i class="fas fa-envelope ml-1 mt-3  " style="font-size: 18px; " aria-hidden="true">
                             </i>
                         </div>
-                        <div class="col-xl-10 col-4 font mt-2  border border-primary" style="">
+                        <div class="col-xl-10 col-4 font mt-2  " style="">
                             {{plan.email}}
                         </div>
                         <div class="col-xl-2 col-2">
@@ -99,20 +99,23 @@
                         <div class="col-xl-10 col-4 font mt-1" style="">
                             {{plan.city}}
                         </div>
+                        <div class="col-xl-10 col-4 font mt-1" style="">
+                            {{plan.gender}}
+                        </div>
                     </div>
 
-                    <div class="row border border-primary">
-                        <div *ngIf='isAdmin' class="col-4 border border-primary mt-1">
+                    <div class="row ">
+                        <div *ngIf='isAdmin' class="col-4 mt-1">
                             <a href="javascript:void(0)" (click)="editmemberInfo(plan)" class="btn btn-outline-primary"
                                 style=" ">Edit</a>
                         </div>
-
-                        <div *ngIf='isAdmin' class="col-4 border border-primary mt-1">
-                            <a href="javascript:void(0)" (click)="viewBride(plan.id)" class="btn btn-outline-primary"
+                        <!-- (click)="viewBride(plan.id)" -->
+                        <div *ngIf='isAdmin' class="col-4 mt-1">
+                            <a href="javascript:void(0)" (click)="incCount()"  class="btn btn-outline-primary"
                                 style="">Profile</a>
                         </div>
 
-                        <div *ngIf='isAdmin' class="col-4 border border-primary mt-1">
+                        <div *ngIf='isAdmin' class="col-4 mt-1">
                             <a href="javascript:void(0)" (click)="deletememberInfo(plan)"
                                 class="btn btn-outline-primary" style="">Delete</a>
                         </div>

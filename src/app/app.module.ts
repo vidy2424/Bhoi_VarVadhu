@@ -4,7 +4,7 @@ import { FormioAppConfig, FormioModule } from 'angular-formio';
 import { LoginFormService } from './formio.service.ts/login-form.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
- import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WebService } from './sevices/web.service';
@@ -54,8 +54,10 @@ import { SuccessStoriesComponent } from './components/success-stories/success-st
 import { AdminPanalComponent } from './components/admin-panal/admin-panal.component';
 import { AdminSearchComponent } from './components/admin-search/admin-search.component';
 import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
- 
- // import { initProviderFactory } from './sevices/init-app-provider.factory';
+import { AlertComponent } from './components/alert/alert.component';
+import { AlertService } from './Helper/alert.service';
+
+// import { initProviderFactory } from './sevices/init-app-provider.factory';
 
 @NgModule({
   declarations: [
@@ -96,7 +98,8 @@ import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
     SuccessStoriesComponent,
     AdminPanalComponent,
     AdminSearchComponent,
-    AdminNavComponent
+    AdminNavComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -111,6 +114,10 @@ import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
     BrowserAnimationsModule,
     TabsModule.forRoot(),
     AccordionModule.forRoot(),
+  ],
+
+  entryComponents: [
+    AlertComponent
   ],
   providers: [WebService,
     HelperService,
@@ -127,6 +134,7 @@ import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
     // },
     LoginService,
     FormioAppConfig,
+    AlertService,
     LoginFormService,
   ],
   bootstrap: [AppComponent]

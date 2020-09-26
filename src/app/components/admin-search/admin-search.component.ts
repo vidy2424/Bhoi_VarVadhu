@@ -10,7 +10,7 @@ import { FormConfig } from 'src/interface/formio-config';
   styleUrls: ['./admin-search.component.css']
 })
 export class AdminSearchComponent implements OnInit {
- 
+
   @Input('config') config;
   @ViewChild('template', { static: false }) _template;
   formIo: FormConfig = {
@@ -23,11 +23,18 @@ export class AdminSearchComponent implements OnInit {
   };
   data = {};
 
+  searchCity = {
+    city: ''
+  };
 
-  
   searchdata = {
-     city: ''
-   };
+    userid:'',
+    name: '',
+    contact: '',
+    email: '',
+    city: ''
+  };
+
   submitted = false;
   path = '/assets/image/';
 
@@ -47,6 +54,8 @@ export class AdminSearchComponent implements OnInit {
     previousPage: 1
   };
 
+  count: number = 0;
+
   constructor(
     private adminSearchApiService: AdminSearchApiService,
     private sanitizer: DomSanitizer,
@@ -54,20 +63,28 @@ export class AdminSearchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-   // this.searchByCity(1);
+    // this.searchByCity(1);
   }
 
   sanitizeImageUrl(imageName: string): SafeUrl {
     const imageUrl = this.path + imageName + '.jpg';
     return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
   }
-  
+
+  clickCount(): void{
+    this.count++
+    }
 
   searchByCity(any) {
     const data = {
-       city: this.searchdata.city,
+      userid: this.searchdata.userid,
+      name: this.searchdata.name,
+      contact: this.searchdata.contact,
+      email: this.searchdata.email,
+      city: this.searchdata.city,
       page: this.pagination.page.toString()
     };
+
 
 
     this.adminSearchApiService.SearchDataByCity(data)

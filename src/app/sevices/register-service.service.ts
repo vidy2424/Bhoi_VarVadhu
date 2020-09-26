@@ -69,4 +69,10 @@ getRecentlyadded(): Observable<any> {
   return this.httpClient.get(this.serverUrl + url);
 }
 
+getAllMembers(start: any): Observable<any> {
+  const url = `/allMember/${start}`;
+  return this.httpClient.get(this.serverUrl + url);
+}
+
+
 }

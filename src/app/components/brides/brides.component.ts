@@ -2,11 +2,8 @@ import * as _ from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Component, OnInit, ViewChild, Input, TemplateRef, HostListener } from '@angular/core';
 import { FormConfig } from 'src/interface/formio-config';
-import { ClientProductsService } from 'src/app/formio.service.ts/client-products.service';
-import { ClientProductsServiceService } from 'src/app/sevices/client-products-service.service';
 import { Student } from 'src/app/interface/student.interface';
 import { Observable } from 'rxjs';
-import { OurProductsService } from 'src/app/formio.service.ts/our-products.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { HelperService } from 'src/app/Helper/helper.service';
 import { LoginService } from 'src/app/sevices/login.service';
@@ -15,8 +12,7 @@ import { RegisterFormService } from 'src/app/formio.service.ts/register-form.ser
 import { RegisterServiceService } from 'src/app/sevices/register-service.service';
 import { MarriageService } from 'src/app/sevices/marriage.service';
 import { Router } from '@angular/router';
-
-
+import { AdminSearchApiService } from 'src/app/sevices/adminSearchApi.service';
 
 @Component({
   selector: 'app-brides',
@@ -24,8 +20,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./brides.component.css']
 })
 export class BridesComponent implements OnInit {
-
-  
   @Input('config') config;
   @ViewChild('template', { static: false }) _template;
   formIo: FormConfig = {
@@ -66,13 +60,16 @@ export class BridesComponent implements OnInit {
     previousPage: 1
   };
 
+
+  
   constructor(
 
     private registerFormService: RegisterFormService,
-    private registerServiceService : RegisterServiceService,
+    private registerServiceService: RegisterServiceService,
     private marriageService: MarriageService,
-    
+
     private modalService: BsModalService,
+    private adminSearchApiService: AdminSearchApiService,
 
     private sanitizer: DomSanitizer,
     private helperService: HelperService,
@@ -102,49 +99,63 @@ export class BridesComponent implements OnInit {
     this.userinfo(tokenName);
     this.router;
   }
- 
 
-  getbrideInfo(page: any): void {
-    this.marriageService.getbrideInfo(page)
-        .subscribe(result => {
-            console.log(result);
-            this.productInfo = result[0];
-            this.pagination.total = result[1] && result[1] % this.pagination.pageSize === 0 ?
-            Math.floor(result[1] / this.pagination.pageSize) :
-            Math.floor(result[1] / this.pagination.pageSize) + 1;
-   
-        }, err => {
-            alert(err);
-        })
+  // get the total Click counts of user
+  public getCount() {
+    return this.helperService.userData['clickCount']
+  }
+  public incCount() {
+    console.log('Cliclssssss', this.helperService.userData['clickCount']);
+    this.helperService.userData['clickCount'] += 1;
+
+    const totalclickcounts = {
+      Counts: ((this.helperService.userData['clickCount'] += 1) - 1).toString(),
+    };
+    const clickCounts = totalclickcounts;
+    console.log(clickCounts);
+
+    this.adminSearchApiService.CountClicks(clickCounts)
+      .subscribe(
+        result => {
+          console.log();
+        },
+        error => {
+          console.log(error);
+        });
   }
 
-  viewBride(userId: any){
+
+  // get all brides
+  getbrideInfo(page: any): void {
+    this.marriageService.getbrideInfo(page)
+      .subscribe(result => {
+        console.log(result);
+        this.productInfo = result[0];
+        this.pagination.total = result[1] && result[1] % this.pagination.pageSize === 0 ?
+          Math.floor(result[1] / this.pagination.pageSize) :
+          Math.floor(result[1] / this.pagination.pageSize) + 1;
+
+      }, err => {
+        alert(err);
+      })
+  }
+
+  // view bride profile
+  viewBride(userId: any) {
     const url = '/Profile/';
     this.router.navigate([url, userId]);
-    }
+  }
 
+  // get image code
   getPath(plan): string {
     const path = this.path + `${plan.code}`;
     return path;
-}
+  }
 
-sanitizeImageUrl(imageName: string): SafeUrl {
-  const imageUrl = this.path + imageName + '.jpg';
-  return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
-}
-
- 
-
-// getmemberInfo(page: any): void {
-//   this.registerServiceService.getmemberInfo(0)
-//       .subscribe(result => {
-//           console.log(result[0]);
-//           this.productInfo = result[0];
- 
-//       }, err => {
-//           alert(err);
-//       })
-// }
+  sanitizeImageUrl(imageName: string): SafeUrl {
+    const imageUrl = this.path + imageName + '.jpg';
+    return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
+  }
 
   addmemberInfo(): void {
     this.configData = {
@@ -153,6 +164,7 @@ sanitizeImageUrl(imageName: string): SafeUrl {
     this.openModalWithClass(this._template);
   }
 
+  // get login user info
   userinfo(token) {
     this.loginService.getuserInfo()
       .subscribe(result => {
@@ -165,7 +177,7 @@ sanitizeImageUrl(imageName: string): SafeUrl {
   }
 
 
-
+// open model
   openModalWithClass(template: TemplateRef<any>, item?: any) {
     this.modalRef = this.modalService.show(
       template,
@@ -178,33 +190,34 @@ sanitizeImageUrl(imageName: string): SafeUrl {
     this.selectedFile = event.target.files[0];
   }
 
- 
 
+// insert and edit user info
   upload(): void {
     const data = this.formIo.submission.data;
     this.submissionData['data'] = data;
     this.submissionData['files'] = this.selectedFile;
     if (data && data['id']) {
-      this.registerServiceService.editmemberInfo(this.submissionData['data'],this.submissionData['files'], this.submissionData['data']['id'])
+      this.registerServiceService.editmemberInfo(this.submissionData['data'], this.submissionData['files'], this.submissionData['data']['id'])
         .subscribe(result => {
           console.log(result);
         }, err => {
           // alert(err);
         });
-    }else{
-    this.registerServiceService.upload(this.submissionData)
-       .subscribe(event => {
- 
-      },
-        err => {
-          this.progress = 0;
-          this.message = 'Could not upload the file!';
-          this.currentFile = undefined;
-        });
-  }
-}
+    } else {
+      this.registerServiceService.upload(this.submissionData)
+        .subscribe(event => {
 
-deletememberInfo(item: any): void {
+        },
+          err => {
+            this.progress = 0;
+            this.message = 'Could not upload the file!';
+            this.currentFile = undefined;
+          });
+    }
+  }
+
+  // delete user
+  deletememberInfo(item: any): void {
     this.registerServiceService.deletememberInfo(item.id)
       .subscribe(result => {
         console.log(result);
@@ -212,17 +225,18 @@ deletememberInfo(item: any): void {
         alert(err);
       });
   }
- 
 
+// open edit info model
   editmemberInfo(item: any): void {
     this.configData = {
-        formName: this.formName,
-        selectedItem: item
+      formName: this.formName,
+      selectedItem: item
     };
     this.openModalWithClass(this._template, item);
     this.formName = `Edit Plan: ${item.fullName}`;
-}
+  }
 
+  // open model
   addPlan(): void {
     this.configData = {
       formName: this.formName
@@ -230,6 +244,7 @@ deletememberInfo(item: any): void {
     this.openModalWithClass(this._template);
   }
 
+  // open register form model
   showLoginForm(item?: any): void {
     console.log(item);
     if (!_.isEmpty(item)) {
@@ -241,25 +256,26 @@ deletememberInfo(item: any): void {
 
 
   // sroll button
-  @HostListener ("window:scroll", [])
+  @HostListener("window:scroll", [])
   onWindowScroll() {
-      if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
-          this.windowScrolled = true;
-      } 
-     else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
-          this.windowScrolled = false;
-      }
+    if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
+      this.windowScrolled = true;
+    }
+    else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
+      this.windowScrolled = false;
+    }
   }
   scrollToTop() {
-      (function smoothscroll() {
-          var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-          if (currentScroll > 0) {
-              window.requestAnimationFrame(smoothscroll);
-              window.scrollTo(0, currentScroll - (currentScroll / 8));
-          }
-      })();
+    (function smoothscroll() {
+      var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      if (currentScroll > 0) {
+        window.requestAnimationFrame(smoothscroll);
+        window.scrollTo(0, currentScroll - (currentScroll / 8));
+      }
+    })();
   }
 
+  // Pagination
   setPreviousAndNextPage(pagetype: any): void {
     if (pagetype === 'Previous') {
       this.getbrideInfo(this.pagination.page - 1);
@@ -302,15 +318,5 @@ deletememberInfo(item: any): void {
   getId(page: any): string {
     return 'page_' + page;
   }
-
-
-
-  // submitForm(event: any): void {
-  //   console.log(event);
-  //   this.ourProductsService.submitForm(event.data, () => {
-  //     this.modalRef.hide();
-  //   });
-  // }
-
 }
 

@@ -15,6 +15,8 @@ import { RegisterFormService } from 'src/app/formio.service.ts/register-form.ser
 import { RegisterServiceService } from 'src/app/sevices/register-service.service';
 import { MarriageService } from 'src/app/sevices/marriage.service';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/Helper/alert.service';
+import { AdminSearchApiService } from 'src/app/sevices/adminSearchApi.service';
 
 @Component({
   selector: 'app-admin-panal',
@@ -22,7 +24,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-panal.component.css']
 })
 export class AdminPanalComponent implements OnInit {
- 
+
   @Input('config') config;
   @ViewChild('template', { static: false }) _template;
   formIo: FormConfig = {
@@ -58,17 +60,22 @@ export class AdminPanalComponent implements OnInit {
   pagination = {
     page: 1,
     total: 0,
-    pageSize: 5,
+    pageSize: 20,
     previousPage: 1
   };
+
+  count: number = 0;
+
 
   constructor(
 
     private registerFormService: RegisterFormService,
-    private registerServiceService : RegisterServiceService,
+    private registerServiceService: RegisterServiceService,
     private marriageService: MarriageService,
-    
+    private alertService: AlertService,
     private modalService: BsModalService,
+    private adminSearchApiService: AdminSearchApiService,
+
 
     private sanitizer: DomSanitizer,
     private helperService: HelperService,
@@ -93,55 +100,46 @@ export class AdminPanalComponent implements OnInit {
 
   ngOnInit() {
     this.isAdmin = this.helperService.userData['role'] === 'ADMIN' ? true : false;
-    this.getbrideInfo(1);
+    this.getAllMembers(1);
     // this.isAdmin = this.userinfo['role'] === 'ADMIN' ? true : false;
     this.userinfo(tokenName);
     this.router;
   }
- 
 
-  getbrideInfo(page: any): void {
-    this.marriageService.getbrideInfo(page)
-        .subscribe(result => {
-            console.log(result);
-            this.productInfo = result[0];
-            this.pagination.total = result[1] && result[1] % this.pagination.pageSize === 0 ?
-            Math.floor(result[1] / this.pagination.pageSize) :
-            Math.floor(result[1] / this.pagination.pageSize) + 1;
-   
-        }, err => {
-            alert(err);
-        })
+
+  getAllMembers(page: any): void {
+    this.registerServiceService.getAllMembers(page)
+      .subscribe(result => {
+        console.log(result);
+        this.productInfo = result[0];
+
+        _.remove(this.productInfo, item => {
+          return item.id === this.helperService.userData['id'];
+        });
+        this.pagination.total = result[1] && result[1] % this.pagination.pageSize === 0 ?
+          Math.floor(result[1] / this.pagination.pageSize) :
+          Math.floor(result[1] / this.pagination.pageSize) + 1;
+
+      }, err => {
+        alert(err);
+      })
   }
 
-  viewBride(userId: any){
+  viewBride(userId: any) {
     const url = '/Profile/';
     this.router.navigate([url, userId]);
-    }
+  }
 
   getPath(plan): string {
     const path = this.path + `${plan.code}`;
     return path;
-}
+  }
 
-sanitizeImageUrl(imageName: string): SafeUrl {
-  const imageUrl = this.path + imageName + '.jpg';
-  return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
-}
-
+  sanitizeImageUrl(imageName: string): SafeUrl {
+    const imageUrl = this.path + imageName + '.jpg';
+    return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
+  }
  
-
-// getmemberInfo(page: any): void {
-//   this.registerServiceService.getmemberInfo(0)
-//       .subscribe(result => {
-//           console.log(result[0]);
-//           this.productInfo = result[0];
- 
-//       }, err => {
-//           alert(err);
-//       })
-// }
-
   addmemberInfo(): void {
     this.configData = {
       formName: this.formName
@@ -174,50 +172,79 @@ sanitizeImageUrl(imageName: string): SafeUrl {
     this.selectedFile = event.target.files[0];
   }
 
- 
+  public getCount() {
+    return this.helperService.count
+  }
+  public incCount() {
+    this.helperService.count += 1;
 
+    const totalclickcounts = {
+     Counts : ((this.helperService.count += 1) / 2).toString(),
+    //  clickCounts : Counts.toString();
+
+    };
+
+
+    const clickCounts = totalclickcounts;
+
+    console.log(clickCounts);
+    this.adminSearchApiService.CountClicks(clickCounts)
+      .subscribe(
+        result => {
+          if (result && result['body']) {
+            console.log(result['body'][0]);
+          }
+        },
+        error => {
+          console.log(error);
+        });
+  }
+ 
   upload(): void {
     const data = this.formIo.submission.data;
     this.submissionData['data'] = data;
     this.submissionData['files'] = this.selectedFile;
     if (data && data['id']) {
-      this.registerServiceService.editmemberInfo(this.submissionData['data'],this.submissionData['files'], this.submissionData['data']['id'])
+      this.registerServiceService.editmemberInfo(this.submissionData['data'], this.submissionData['files'], this.submissionData['data']['id'])
         .subscribe(result => {
           console.log(result);
         }, err => {
           // alert(err);
         });
-    }else{
-    this.registerServiceService.upload(this.submissionData)
-       .subscribe(event => {
- 
-      },
-        err => {
-          this.progress = 0;
-          this.message = 'Could not upload the file!';
-          this.currentFile = undefined;
-        });
-  }
-}
+    } else {
+      this.registerServiceService.upload(this.submissionData)
+        .subscribe(event => {
 
-deletememberInfo(item: any): void {
-    this.registerServiceService.deletememberInfo(item.id)
-      .subscribe(result => {
-        console.log(result);
-      }, err => {
-        alert(err);
-      });
+        },
+          err => {
+            this.progress = 0;
+            this.message = 'Could not upload the file!';
+            this.currentFile = undefined;
+          });
+    }
   }
- 
+
+  deletememberInfo(item: any): void {
+    this.alertService.showInfo('Confirm submit', 'Do you want to delete?', result => {
+      if (result) {
+        this.registerServiceService.deletememberInfo(item.id)
+          .subscribe(result => {
+            console.log(result);
+          }, err => {
+            alert(err);
+          });
+      }
+    });
+  }
 
   editmemberInfo(item: any): void {
     this.configData = {
-        formName: this.formName,
-        selectedItem: item
+      formName: this.formName,
+      selectedItem: item
     };
     this.openModalWithClass(this._template, item);
     this.formName = `Edit Plan: ${item.fullName}`;
-}
+  }
 
   addPlan(): void {
     this.configData = {
@@ -237,31 +264,31 @@ deletememberInfo(item: any): void {
 
 
   // sroll button
-  @HostListener ("window:scroll", [])
+  @HostListener("window:scroll", [])
   onWindowScroll() {
-      if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
-          this.windowScrolled = true;
-      } 
-     else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
-          this.windowScrolled = false;
-      }
+    if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
+      this.windowScrolled = true;
+    }
+    else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
+      this.windowScrolled = false;
+    }
   }
   scrollToTop() {
-      (function smoothscroll() {
-          var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-          if (currentScroll > 0) {
-              window.requestAnimationFrame(smoothscroll);
-              window.scrollTo(0, currentScroll - (currentScroll / 8));
-          }
-      })();
+    (function smoothscroll() {
+      var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      if (currentScroll > 0) {
+        window.requestAnimationFrame(smoothscroll);
+        window.scrollTo(0, currentScroll - (currentScroll / 8));
+      }
+    })();
   }
 
   setPreviousAndNextPage(pagetype: any): void {
     if (pagetype === 'Previous') {
-      this.getbrideInfo(this.pagination.page - 1);
+      this.getAllMembers(this.pagination.page - 1);
       this.pagination.page = this.pagination.page - 1;
     } else if (pagetype === 'Next') {
-      this.getbrideInfo(this.pagination.page + 1);
+      this.getAllMembers(this.pagination.page + 1);
       this.pagination.page = this.pagination.page + 1;
     }
     this.removeActivePage(this.pagination.previousPage);
@@ -279,7 +306,7 @@ deletememberInfo(item: any): void {
 
   changePage(page: number): void {
     this.pagination.page = page;
-    this.getbrideInfo(page);
+    this.getAllMembers(page);
     this.removeActivePage(this.pagination.previousPage);
     this.setActivePage(page);
     this.pagination.previousPage = page;

@@ -15,6 +15,7 @@ import { RegisterFormService } from 'src/app/formio.service.ts/register-form.ser
 import { RegisterServiceService } from 'src/app/sevices/register-service.service';
 import { MarriageService } from 'src/app/sevices/marriage.service';
 import { Router } from '@angular/router';
+import { AdminSearchApiService } from 'src/app/sevices/adminSearchApi.service';
  
 
 
@@ -71,7 +72,8 @@ export class GroomComponent implements OnInit {
     private registerFormService: RegisterFormService,
     private registerServiceService : RegisterServiceService,
     private marriageService: MarriageService,
-    
+    private adminSearchApiService: AdminSearchApiService,
+
     private modalService: BsModalService,
 
     private sanitizer: DomSanitizer,
@@ -102,7 +104,30 @@ export class GroomComponent implements OnInit {
     this.userinfo(tokenName);
     this.router;
   }
- 
+
+  // get the total Click counts of user
+  public getCount() {
+    return this.helperService.userData['clickCount']
+  }
+  public incCount() {
+    console.log('Cliclssssss', this.helperService.userData['clickCount']);
+    this.helperService.userData['clickCount'] += 1;
+
+    const totalclickcounts = {
+      Counts: ((this.helperService.userData['clickCount'] += 1) - 1).toString(),
+    };
+    const clickCounts = totalclickcounts;
+    console.log(clickCounts);
+
+    this.adminSearchApiService.CountClicks(clickCounts)
+      .subscribe(
+        result => {
+          console.log();
+        },
+        error => {
+          console.log(error);
+        });
+  }
 
   getgroomInfo(page: any): void {
     this.marriageService.getgroomInfo(page)

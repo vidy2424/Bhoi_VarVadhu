@@ -10,6 +10,9 @@ export class HelperService {
     private _userData: object = {};
     private _token: string;
 
+    public count = 0;
+
+
     get userData(): object {
         return this._userData;
     }
