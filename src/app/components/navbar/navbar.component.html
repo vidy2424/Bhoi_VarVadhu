@@ -24,17 +24,17 @@
       <li class="nav-item ml-2 mt-2 mr-2">
         <a routerLink="/About" class="nav-link fontsize">ABOUT</a>
       </li>
-      <li class="nav-item ml-2 mt-2">
+      <li *ngIf='isMale' class="nav-item ml-2 mt-2">
         <a routerLink="/Bride" class="nav-link fontsize">BRIDE</a>
       </li>
-      <li class="nav-item ml-2 mt-2">
+      <li *ngIf='isFemale' class="nav-item ml-2 mt-2">
         <a routerLink="/Groom" class="nav-link fontsize">GROOM</a>
       </li>
       <li  class="nav-item ml-2 mt-2">
         <a routerLink="/Search" class="nav-link fontsize">SEARCH</a>
       </li>
       <li  class="nav-item ml-2 mt-2">
-        <a routerLink="/AdminPanal" class="nav-link fontsize">AdminPanal</a>
+        <a routerLink="/AdminPanal" class="nav-link fontsize">ADMIN PANEL</a>
       </li>
       <!-- <div class="dropdown ml-2 mr-2" style="margin-top:6px;">
         <button class="dropbtn fontsize">PRODUCTS</button>

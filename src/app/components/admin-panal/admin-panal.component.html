@@ -97,10 +97,13 @@
                             </i>
                         </div>
                         <div class="col-xl-10 col-4 font mt-1" style="">
-                            {{plan.city}}
+                             {{plan.dateTime | date:'dd/MM/yyyy'}}
                         </div>
                         <div class="col-xl-10 col-4 font mt-1" style="">
                             {{plan.gender}}
+                        </div>
+                        <div class="col-xl-10 col-4 font mt-1" style="">
+                            {{plan.clickCount}}
                         </div>
                     </div>
 
@@ -111,7 +114,7 @@
                         </div>
                         <!-- (click)="viewBride(plan.id)" -->
                         <div *ngIf='isAdmin' class="col-4 mt-1">
-                            <a href="javascript:void(0)" (click)="incCount()"  class="btn btn-outline-primary"
+                            <a href="javascript:void(0)" (click)="incCount()" (click)="viewFullProfile(plan.id)" class="btn btn-outline-primary"
                                 style="">Profile</a>
                         </div>
 
@@ -163,7 +166,7 @@
 
 
 <div class="">
-    <app-footer></app-footer>
+    <app-footer-homepage></app-footer-homepage>
 </div>
 
 <!-- sroll to top button -->

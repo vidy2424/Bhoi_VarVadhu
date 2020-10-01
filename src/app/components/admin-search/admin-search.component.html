@@ -8,7 +8,7 @@
 </div>
 
 <div class="container-fluid ">
-    <div class="row border border-primary" style="height: 80px;"></div>
+    <div class="row " style="height: 80px;"></div>
 
     <div class="row">
         <div class="col-1"></div>
@@ -19,7 +19,8 @@
 
                         <div class="form-group">
                             <label>ID</label>
-                            <input class="form-control" id="userid" required [(ngModel)]="searchdata.userid" placeholder="ID" name="name">
+                            <input class="form-control" id="userid" required [(ngModel)]="searchdata.userid" placeholder="ID" 
+                            required data-error="Please enter your full name." name="name">
                         </div>
                     </div>
                     <div class="col-2">
@@ -66,11 +67,11 @@
 
 
 <div class="container-fluid">
-    <div class="row border border-danger ">
+    <div class="row  ">
         <!-- <div class="col-xl-2"></div> -->
         <div class="col-xl-3" *ngFor="let plan of searchByCityInfo; let index=index">
 
-            <div class="card button one border border-primary" style="margin-top: 10px; border-radius: 20px; ">
+            <div class="card button one " style="margin-top: 10px; border-radius: 20px; ">
 
                 <div class="card-body ">
                     <div class="row">
@@ -88,13 +89,13 @@
 
                         </div>
                     </div>
-                    <div class="row border border-danger">
+                    <div class="row ">
                         <!-- <div class="col-12 col-xl-1 col-sm-12  "></div> -->
-                        <div class="col-xl-2 col-2 border border-primary">
+                        <div class="col-xl-2 col-2 ">
                             <i class="fas fa-envelope ml-1 mt-3  " style="font-size: 18px; " aria-hidden="true">
                             </i>
                         </div>
-                        <div class="col-xl-10 col-4 font mt-2  border border-primary" style="">
+                        <div class="col-xl-10 col-4 font mt-2  " style="">
                             {{plan.email}}
                         </div>
                         <div class="col-xl-2 col-2">
@@ -113,18 +114,18 @@
                         </div>
                     </div>
 
-                    <div class="row border border-primary">
-                        <div *ngIf='isAdmin' class="col-4 border border-primary mt-1">
+                    <div class="row ">
+                        <div *ngIf='isAdmin' class="col-4  mt-1">
                             <a href="javascript:void(0)" (click)="editmemberInfo(plan)" class="btn btn-outline-primary"
                                 style=" ">Edit</a>
                         </div>
 
-                        <div *ngIf='isAdmin' class="col-4 border border-primary mt-1">
+                        <div *ngIf='isAdmin' class="col-4  mt-1">
                             <a href="javascript:void(0)" (click)="viewBride(plan.id)" class="btn btn-outline-primary"
                                 style="">Profile</a>
                         </div>
 
-                        <div *ngIf='isAdmin' class="col-4 border border-primary mt-1">
+                        <div *ngIf='isAdmin' class="col-4  mt-1">
                             <a href="javascript:void(0)" (click)="deletememberInfo(plan)"
                                 class="btn btn-outline-primary" style="">Delete</a>
                         </div>
@@ -137,7 +138,7 @@
         <!-- <div class="col-xl-1 "></div> -->
     </div>
 
-    <div class="row mt-4 border border-primary">
+    <div class="row mt-4 ">
         <div class="col-2"></div>
         <div *ngIf="pagination.total > 1" class="col-10 mt-4">
             <div class="col-md-4 offset-md-4">
@@ -167,11 +168,11 @@
             </div>
         </div>
     </div>
-    <div class="row border border-primary" style="height: 80px;"></div>
+    <div class="row " style="height: 80px;"></div>
 
 </div>
 
 
-<div class="border border-primary">
+<div class="">
     <app-footer-homepage></app-footer-homepage>
 </div>

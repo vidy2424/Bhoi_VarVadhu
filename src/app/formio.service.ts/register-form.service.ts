@@ -788,6 +788,7 @@ export class RegisterFormService {
                                             key: 'groom_Bride',
                                             type: 'radio',
                                             input: true,
+                                            defaultValue: 'groom',
                                             hideOnChildrenHidden: false
                                         },
                                         
@@ -1073,6 +1074,7 @@ export class RegisterFormService {
                                             key: 'mangal',
                                             type: 'radio',
                                             input: true,
+                                            defaultValue: 'no',
                                             hideOnChildrenHidden: false
                                         }
                                     ],
@@ -1223,6 +1225,7 @@ export class RegisterFormService {
                                             key: 'physical_Disability',
                                             type: 'radio',
                                             input: true,
+                                            defaultValue: 'no',
                                             hideOnChildrenHidden: false
                                         }
                                         
@@ -1390,6 +1393,8 @@ export class RegisterFormService {
                                                     input: true,
                                                     defaultValue: 'USER'
                                                 },
+
+                                                 
                                             ],
                                             width: 6,
                                             offset: 0,
@@ -1407,10 +1412,8 @@ export class RegisterFormService {
                         }
                     ],
                     hideOnChildrenHidden: false
-                },
-                 
-            ]
-            ,
+                }
+            ],
         }
     }
 

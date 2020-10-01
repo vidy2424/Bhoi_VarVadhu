@@ -23,6 +23,7 @@ import { TermAndConditionsComponent } from './components/term-and-conditions/ter
 import { SearchComponent } from './components/search/search.component';
 import { AdminPanalComponent } from './components/admin-panal/admin-panal.component';
 import { AdminSearchComponent } from './components/admin-search/admin-search.component';
+import { FullProfileAdminComponent } from './components/full-profile-admin/full-profile-admin.component';
 
 
 const routes: Routes = [
@@ -47,7 +48,8 @@ const routes: Routes = [
   { path: 'Term_And_Conditions', component: TermAndConditionsComponent },
   { path: 'Searchresults', component: SearchResultsComponent },
   { path: 'AdminPanal', component:  AdminPanalComponent },
-  { path: 'AdminSearch', component:  AdminSearchComponent }
+  { path: 'AdminSearch', component:  AdminSearchComponent },
+  { path: 'FullProfile/:id', component: FullProfileAdminComponent }
 ];
 
 @NgModule({

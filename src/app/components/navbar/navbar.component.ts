@@ -13,7 +13,8 @@ import { tokenName } from '@angular/compiler';
 })
 export class NavbarComponent implements OnInit {
   loginUserInfo = [];
-
+  isMale = false;
+  isFemale = false;
   constructor(
     private helperService: HelperService,
     private loginService: LoginService,
@@ -23,6 +24,9 @@ export class NavbarComponent implements OnInit {
 
   isLoggedin: boolean;
   ngOnInit() {
+    this.isMale = this.helperService.userData['gender'] === 'male' ? true : false;
+    this.isFemale = this.helperService.userData['gender'] === 'isFemale' ? true : false;
+
     this.isLoggedin = this.helperService.token ? true : false;
     this.userinfo(tokenName);
  
@@ -46,7 +50,10 @@ export class NavbarComponent implements OnInit {
     this.loginService.getuserInfo()
     .subscribe(result => {
         this.helperService.userData = result;
+        this.isMale = result['gender'] === 'male' ? true : false;
+        this.isFemale = result['gender'] === 'female' ? true : false;
         this. loginUserInfo = result;
+
     }, err => {
         //alert(err);
     });

@@ -56,6 +56,10 @@ import { AdminSearchComponent } from './components/admin-search/admin-search.com
 import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { AlertService } from './Helper/alert.service';
+import { FullProfileAdminComponent } from './components/full-profile-admin/full-profile-admin.component';
+import { AdminSimilarProfilesComponent } from './components/admin-similar-profiles/admin-similar-profiles.component';
+import { AdminRecentlyAddedMemberComponent } from './components/admin-recently-added-member/admin-recently-added-member.component';
+
 
 // import { initProviderFactory } from './sevices/init-app-provider.factory';
 
@@ -99,7 +103,10 @@ import { AlertService } from './Helper/alert.service';
     AdminPanalComponent,
     AdminSearchComponent,
     AdminNavComponent,
-    AlertComponent
+    AlertComponent,
+    FullProfileAdminComponent,
+    AdminSimilarProfilesComponent,
+    AdminRecentlyAddedMemberComponent
   ],
   imports: [
     BrowserModule,
